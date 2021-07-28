@@ -1,0 +1,25 @@
+<h2>DAPP</h2>
+
+<table>
+	<tr>
+		<th>Account:</th><td><%= @account %></td>
+	</tr>
+	<tr>
+		<th>Balance:</th><td><%= @balance %></td>
+	</tr>
+</table>
+
+<h2>Trades</h2>
+
+<table>
+	<tr>
+		<th>Time</th><th>Dapp</th><th>DAPP/ETH</th>
+	</tr>
+	<% @trades.each do |trade| %>
+	  <tr>
+	  	<td><%= trade[:formattedTimestamp]%></td>
+			<td><%= trade[:tokenAmount] %></td>
+			<td><%= trade[:tokenPrice] %></td>
+	  </tr>
+	<% end %>
+</table>
