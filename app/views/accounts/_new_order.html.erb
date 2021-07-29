@@ -1,0 +1,10 @@
+<%= form_tag new_orders_path do |f| %>
+
+<table>
+	<tr><td>Buy Amount</td><td><%= text_field_tag  :buy_amount %></td></tr>
+	<tr><td>Buy price</td><td><%= text_field_tag :buy_price %></td></tr>
+	
+	<tr><td><%= submit_tag 'Buy Order' %></td></tr>
+</table>
+
+<% end %>
