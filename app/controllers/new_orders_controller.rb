@@ -14,5 +14,7 @@ class NewOrdersController < ApplicationController
     amountGive =  Ethereum::Formatter.new.to_wei(tokenAmount.to_i * price.to_f)
     
     exchange.transact_and_wait.make_order(tokenGet, amountGet, tokenGive, amountGive)
+    
+    redirect_to accounts_path, notice: 'Order successfully placed'
   end
 end
