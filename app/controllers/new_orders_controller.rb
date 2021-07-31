@@ -9,7 +9,7 @@ class NewOrdersController < ApplicationController
     price = params[:buy_price]
    
     tokenGet = token.address
-    tokenGive = '0000000000000000000000000000000000000000'
+    tokenGive = ENV['ETHER_ADDRESS']
     amountGet =  Ethereum::Formatter.new.to_wei(tokenAmount.to_i)
     amountGive =  Ethereum::Formatter.new.to_wei(tokenAmount.to_i * price.to_f)
     

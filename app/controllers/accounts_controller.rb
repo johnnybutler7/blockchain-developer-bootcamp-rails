@@ -11,11 +11,10 @@ class AccountsController < ApplicationController
   
   def decorated_trades(events)
     trades = []
-    precision = 100000
     events.each do |event|
       args = event[:args]
       tokenGive = args[4]
-      if tokenGive == '0000000000000000000000000000000000000000'
+      if tokenGive == ETHER_ADDRESS
         etherAmount = args[5]
         tokenAmount = args[3]
       else
