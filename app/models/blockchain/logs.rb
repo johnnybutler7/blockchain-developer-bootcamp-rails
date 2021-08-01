@@ -1,6 +1,5 @@
 module Blockchain
   class Logs
-    
     def initialize(contract:, event_name:)
       @contract = contract
       @event_name = event_name
