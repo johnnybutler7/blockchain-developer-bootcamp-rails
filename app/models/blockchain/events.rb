@@ -1,10 +1,10 @@
 module Blockchain
   class Events
-    
+
     def initialize(events:)
       @events = events
     end
-    
+
     def trades
       trade_events = []
       events.each do |event|
@@ -26,9 +26,9 @@ module Blockchain
       end
       trade_events
     end
-    
+
     private
-    
+
     attr_reader :events
   end
 end
