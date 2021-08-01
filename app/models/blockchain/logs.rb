@@ -1,7 +1,5 @@
 module Blockchain
   class Logs
-    ENCODER = Ethereum::Encoder.new
-    DECODER = Ethereum::Decoder.new
 
     def self.get_logs(contract, event_name)
       raise ArgumentError, "invalid contract instance (#{contract.class.name})" unless contract.parent.is_a?(Ethereum::Contract)
