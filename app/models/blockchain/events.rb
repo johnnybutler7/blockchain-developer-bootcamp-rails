@@ -10,13 +10,32 @@ module Blockchain
         args = event[:args]
         tokenGive = args[4]
         etherAmount, tokenAmount = extract_ether_token_amount(args)
-        tokenPrice = (etherAmount.to_f / tokenAmount.to_f)
-        tokenPrice = (tokenPrice * PRECISION).round / PRECISION.to_f
+        tokenPrice = calculate_token_price(etherAmount, tokenAmount)
         formattedTimestamp = Time.at(args[7])
       
         trade_events << {etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp}
       end
       trade_events
+    end
+    
+    def open_orders
+      account = BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
+      open_order_events = []
+      events.each do |event|
+        args = event[:args]
+        order_id = args[0]
+        user_id = Ethereum::Formatter.new.to_address(args[1])
+        tokenGive = args[4]
+        unless EXCHANGE.call.order_filled(order_id) && EXCHANGE.call.order_cancelled(order_id)
+          if user_id == account
+            etherAmount, tokenAmount = extract_ether_token_amount(args)
+            tokenPrice = calculate_token_price(etherAmount, tokenAmount)
+
+            open_order_events << {etherAmount: Ethereum::Formatter.new.from_wei(etherAmount), tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice}
+          end
+        end
+      end
+      open_order_events.reverse
     end
 
     private
@@ -32,6 +51,11 @@ module Blockchain
         tokenAmount = args[5]
       end
       [etherAmount, tokenAmount]
+    end
+    
+    def calculate_token_price(etherAmount, tokenAmount)
+      tokenPrice = (etherAmount.to_f / tokenAmount.to_f)
+      tokenPrice = (tokenPrice * PRECISION).round / PRECISION.to_f
     end
   end
 end

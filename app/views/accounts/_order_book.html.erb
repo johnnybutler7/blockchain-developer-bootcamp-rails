@@ -1,0 +1,12 @@
+<table id='open-orders'>
+	<tr>
+		<th>DAPP</th><th>DAPP/ETH</th><th>ETH</th>
+	</tr>
+	<% @open_orders.each do |order| %>
+	  <tr>
+	  	<td><%= order[:tokenAmount]%></td>
+			<td><%= order[:tokenPrice] %></td>
+			<td><%= order[:etherAmount] %></td>
+	  </tr>
+	<% end %>
+</table>
