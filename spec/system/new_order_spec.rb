@@ -10,7 +10,7 @@ RSpec.feature 'New Order', :type => :system do
     
     expect(page).to have_content('Order successfully placed')
     
-    within('#open-orders') do
+    within('#sell-orders') do
       expect(page).to have_content('245')
       expect(page).to have_content('0.0023')
     end

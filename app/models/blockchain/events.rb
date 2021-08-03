@@ -8,12 +8,13 @@ module Blockchain
       trade_events = []
       events.each do |event|
         args = event[:args]
+        order_id = args[0]
         tokenGive = args[4]
         etherAmount, tokenAmount = extract_ether_token_amount(args)
         tokenPrice = calculate_token_price(etherAmount, tokenAmount)
         formattedTimestamp = Time.at(args[7])
       
-        trade_events << {etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp}
+        trade_events << {orderId: order_id, etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp}
       end
       trade_events
     end
@@ -26,7 +27,7 @@ module Blockchain
         order_id = args[0]
         user_id = Ethereum::Formatter.new.to_address(args[1])
         tokenGive = args[4]
-        unless EXCHANGE.call.order_filled(order_id) && EXCHANGE.call.order_cancelled(order_id)
+        if !EXCHANGE.call.order_filled(order_id) && !EXCHANGE.call.order_cancelled(order_id)
           if user_id == account
             etherAmount, tokenAmount = extract_ether_token_amount(args)
             tokenPrice = calculate_token_price(etherAmount, tokenAmount)

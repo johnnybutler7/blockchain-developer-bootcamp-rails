@@ -1,13 +1,13 @@
-<table id='open-orders'>
+<table id='sell-orders'>
 	<tr>
 		<th>DAPP</th><th>DAPP/ETH</th><th>ETH</th><th></th>
 	</tr>
 	<% @open_orders.each do |order| %>
-	  <tr>
+	  <tr id="sell-order-<%= order[:orderId] %>">
 	  	<td><%= order[:tokenAmount]%></td>
 			<td><%= order[:tokenPrice] %></td>
 			<td><%= order[:etherAmount] %></td>
-			<td><%= link_to 'Sell', order_fill_path(order_id: order[:orderId]), method: :put %></td>
+			<td><%= link_to 'Sell', order_fill_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]} %></td>
 	  </tr>
 	<% end %>
 </table>

@@ -11,12 +11,12 @@
 
 <h2>Trades</h2>
 
-<table>
+<table id='my-trades'>
 	<tr>
 		<th>Time</th><th>Dapp</th><th>DAPP/ETH</th>
 	</tr>
 	<% @trades.each do |trade| %>
-	  <tr>
+	  <tr id='my-trade-<%= trade[:orderId] %>'>
 	  	<td><%= trade[:formattedTimestamp]%></td>
 			<td><%= trade[:tokenAmount] %></td>
 			<td><%= trade[:tokenPrice] %></td>

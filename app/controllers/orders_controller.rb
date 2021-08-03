@@ -14,5 +14,10 @@ class OrdersController < ApplicationController
   end
   
   def fill
+    order_id = params[:order_id]
+    
+    EXCHANGE.transact_and_wait.fill_order(order_id.to_i)
+    
+    redirect_to accounts_path, notice: 'Order successfully filled'
   end
 end
