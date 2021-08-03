@@ -1,4 +1,4 @@
-class NewOrdersController < ApplicationController
+class OrdersController < ApplicationController
   def create    
     tokenAmount = params[:buy_amount]
     price = params[:buy_price]
@@ -11,5 +11,8 @@ class NewOrdersController < ApplicationController
     EXCHANGE.transact_and_wait.make_order(tokenGet, amountGet, tokenGive, amountGive)
     
     redirect_to accounts_path, notice: 'Order successfully placed'
+  end
+  
+  def fill
   end
 end

@@ -31,7 +31,7 @@ module Blockchain
             etherAmount, tokenAmount = extract_ether_token_amount(args)
             tokenPrice = calculate_token_price(etherAmount, tokenAmount)
 
-            open_order_events << {etherAmount: Ethereum::Formatter.new.from_wei(etherAmount), tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice}
+            open_order_events << {orderId: order_id, etherAmount: Ethereum::Formatter.new.from_wei(etherAmount), tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice}
           end
         end
       end
