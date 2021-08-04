@@ -1,0 +1,10 @@
+<%= form_tag sell_orders_path do |f| %>
+
+<table>
+	<tr><td>Sell Amount</td><td><%= text_field_tag  :sell_amount %></td></tr>
+	<tr><td>Sell price</td><td><%= text_field_tag :sell_price %></td></tr>
+	
+	<tr><td><%= submit_tag 'Sell Order' %></td></tr>
+</table>
+
+<% end %>

@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     
     EXCHANGE.transact_and_wait.make_order(tokenGet, amountGet, tokenGive, amountGive)
     
-    redirect_to accounts_path, notice: 'Order successfully placed'
+    redirect_to accounts_path, notice: 'Buy order successfully placed'
   end
   
   def fill

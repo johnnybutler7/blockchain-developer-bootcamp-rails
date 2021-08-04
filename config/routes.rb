@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:create] do
     put :fill
   end
+  resources :sell_orders, only: [:create]
 end
