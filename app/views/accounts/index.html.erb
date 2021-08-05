@@ -1,11 +1,27 @@
 <h2>DAPP</h2>
 
 <table>
+	<tr><th>Address:</th><td><%= @account %></td></tr>
+</table>
+
+<br />
+
+<table>
 	<tr>
-		<th>Account:</th><td><%= @account %></td>
+		<th>Account</th>
+		<th>Wallet</th>
+		<th>Exchange</th>
 	</tr>
 	<tr>
-		<th>Balance:</th><td><%= @balance %></td>
+		<th>ETH</th>
+		<th><%= @balance %></th>
+		<th>??</th>
+	</tr>
+	
+	<tr>
+		<th>DAPP</th>
+		<th>????</th>
+		<th>??</th>
 	</tr>
 </table>
 
@@ -18,7 +34,7 @@
 	<% @trades.each do |trade| %>
 	  <tr id='my-trade-<%= trade[:orderId] %>'>
 	  	<td><%= trade[:formattedTimestamp]%></td>
-			<td><%= trade[:tokenAmount] %></td>
+			<td><%= trade[:orderSign]%><%= trade[:tokenAmount] %></td>
 			<td><%= trade[:tokenPrice] %></td>
 	  </tr>
 	<% end %>
