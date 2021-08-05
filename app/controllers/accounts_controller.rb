@@ -8,8 +8,8 @@ class AccountsController < ApplicationController
     
     order_events = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').call
     open_orders = Blockchain::Events.new(events: order_events).open_orders
-
-    @buy_orders = open_orders.find_all{|o| o[:orderType] == 'buy'}
+    
     @sell_orders = open_orders.find_all{|o| o[:orderType] == 'sell'}
+    @buy_orders = open_orders.find_all{|o| o[:orderType] == 'buy'}
   end
 end
