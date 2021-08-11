@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     put :fill
   end
   resources :sell_orders, only: [:create]
+  resources :deposits, only: [:create]
 end

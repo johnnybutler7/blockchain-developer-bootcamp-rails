@@ -1,0 +1,5 @@
+<%= form_tag deposits_path do |f| %>
+<table>
+	<tr><td>ETH Amount:</td><td><%= text_field_tag  :ether_amount %></td><td><%= submit_tag 'Deposit' %></td></tr>
+</table>
+<% end %>

@@ -5,6 +5,13 @@ GIT
   specs:
     digest-sha3 (1.1.0)
 
+GIT
+  remote: https://github.com/sydneyitguy/digest-sha3-ruby.git
+  revision: 517f1941bd6be6a28f8cc16e3dd72e4171fec6fa
+  ref: 517f1941bd6be6a28f8cc16e3dd72e4171fec6fa
+  specs:
+    digest-sha3-patched (1.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -91,10 +98,19 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    eth (0.4.12)
+      digest-sha3-patched (~> 1.1)
+      ffi (~> 1.0)
+      money-tree (~> 0.10.0)
+      rlp (~> 0.7.3)
+      scrypt (~> 3.0.6)
     ethereum.rb (2.5)
       activesupport (>= 4.0)
       digest-sha3 (~> 1.1)
     ffi (1.15.3)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     globalid (0.5.1)
       activesupport (>= 5.0)
     i18n (1.8.10)
@@ -113,6 +129,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.0)
     minitest (5.14.4)
+    money-tree (0.10.0)
+      ffi
     msgpack (1.4.2)
     nio4r (2.5.7)
     nokogiri (1.11.7-x86_64-darwin)
@@ -160,6 +178,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.1.1)
     rexml (3.2.4)
+    rlp (0.7.3)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -188,6 +207,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scrypt (3.0.7)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -237,7 +258,9 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   digest-sha3!
+  digest-sha3-patched!
   dotenv-rails
+  eth (~> 0.4.12)
   ethereum.rb
   jbuilder (~> 2.7)
   listen (~> 3.3)

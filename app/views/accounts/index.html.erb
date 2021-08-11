@@ -3,7 +3,6 @@
 <table>
 	<tr><th>Address:</th><td><%= @account %></td></tr>
 </table>
-
 <br />
 
 <table>
@@ -24,6 +23,10 @@
 		<th><%= format_token_balance(@exchange_token_balance) %></th>
 	</tr>
 </table>
+
+<%= render partial: 'new_ether_deposit' %>
+
+
 
 <h2>Trades</h2>
 
