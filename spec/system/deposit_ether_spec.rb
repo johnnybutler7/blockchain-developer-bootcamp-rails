@@ -7,8 +7,10 @@ RSpec.feature 'Deposit Ether', :type => :system do
     
     visit accounts_path
     start_eth_amount = find('#exchange-ether-balance').text.to_f
-    fill_in 'ether_amount', with: deposit_eth_amount
-    click_on 'Deposit'
+    within('#deposit-ether-form') do
+      fill_in 'ether_amount', with: deposit_eth_amount
+      click_on 'Deposit'
+    end
     
     expect(page).to have_content('Successfully deposited Ether')
     within('#exchange-ether-balance') do
