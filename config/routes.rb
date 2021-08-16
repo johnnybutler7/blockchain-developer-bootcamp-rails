@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :deposits, only: [:create]
   resources :withdrawals, only: [:create]
   resources :token_deposits, only: [:create]
+  resources :token_withdrawals, only: [:create]
 end
