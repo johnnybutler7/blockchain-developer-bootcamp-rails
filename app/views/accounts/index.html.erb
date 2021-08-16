@@ -13,13 +13,13 @@
 	</tr>
 	<tr>
 		<th>ETH</th>
-		<th><%= @ether_balance %></th>
+		<th id='wallet-ether-balance'><%= @ether_balance %></th>
 		<th id='exchange-ether-balance'><%= @exchange_ether_balance %></th>
 	</tr>
 	
 	<tr>
 		<th>DAPP</th>
-		<th><%= format_token_balance(@token_balance) %></th>
+		<th id='wallet-token-balance'><%= format_token_balance(@token_balance) %></th>
 		<th id='exchange-token-balance'><%= format_token_balance(@exchange_token_balance) %></th>
 	</tr>
 </table>
@@ -27,6 +27,10 @@
 <h2>Deposits</h2>
 <%= render partial: 'new_ether_deposit' %>
 <%= render partial: 'new_token_deposit' %>
+
+<h2>Withdrawal</h2>
+<%= render partial: 'new_ether_withdrawal' %>
+<%= render partial: 'new_token_withdrawal' %>
 
 <h2>Trades</h2>
 

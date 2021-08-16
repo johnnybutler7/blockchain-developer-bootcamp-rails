@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
   resources :sell_orders, only: [:create]
   resources :deposits, only: [:create]
+  resources :withdrawals, only: [:create]
   resources :token_deposits, only: [:create]
 end
