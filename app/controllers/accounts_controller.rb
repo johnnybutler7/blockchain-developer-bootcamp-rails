@@ -13,5 +13,7 @@ class AccountsController < ApplicationController
     open_orders = Blockchain::Events.new(events: order_events).open_orders
     @sell_orders = open_orders.find_all{|o| o[:orderType] == 'sell'}
     @buy_orders = open_orders.find_all{|o| o[:orderType] == 'buy'}
+
+    @my_orders = open_orders.find_all{|o| o[:user] == @account}
   end
 end

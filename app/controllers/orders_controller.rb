@@ -20,4 +20,12 @@ class OrdersController < ApplicationController
     
     redirect_to accounts_path, notice: 'Order successfully filled'
   end
+  
+  def cancel
+    order_id = params[:order_id]
+    
+    EXCHANGE.transact_and_wait.cancel_order(order_id.to_i)
+    
+    redirect_to accounts_path, notice: 'Order successfully cancelled'
+  end
 end

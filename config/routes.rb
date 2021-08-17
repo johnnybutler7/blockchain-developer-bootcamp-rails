@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index]
   resources :orders, only: [:create] do
     put :fill
+    put :cancel
   end
   resources :sell_orders, only: [:create]
   resources :deposits, only: [:create]

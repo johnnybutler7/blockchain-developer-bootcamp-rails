@@ -1,0 +1,12 @@
+<table id='my-orders'>
+	<tr>
+		<th>Amount</th><th>DAPP/ETH</th><th>Cancel</th>
+	</tr>
+	<% @my_orders.each do |order| %>
+	  <tr id="my-order-<%= order[:orderId] %>">
+	  	<td><%= order[:tokenAmount]%></td>
+			<td><%= order[:tokenPrice] %></td>
+			<td><%= link_to 'Cancel', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]} %></td>
+	  </tr>
+	<% end %>
+</table>

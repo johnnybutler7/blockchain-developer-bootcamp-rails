@@ -14,7 +14,7 @@ RSpec.feature 'Withdraw Ether', :type => :system do
     
     expect(page).to have_content('Successfully withdrew Ether')
     within('#exchange-ether-balance') do
-      expect(page).to have_content(start_eth_amount - withdraw_eth_amount)
+      expect(page).to have_content((start_eth_amount - withdraw_eth_amount).round(2))
     end
   end
 end
