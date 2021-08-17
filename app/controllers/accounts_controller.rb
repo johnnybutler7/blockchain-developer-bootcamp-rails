@@ -15,5 +15,6 @@ class AccountsController < ApplicationController
     @buy_orders = open_orders.find_all{|o| o[:orderType] == 'buy'}
 
     @my_orders = open_orders.find_all{|o| o[:user] == @account}
+    @my_trades = @trades.find_all{|o| o[:user] == @account || o[:userFill] == @account}
   end
 end

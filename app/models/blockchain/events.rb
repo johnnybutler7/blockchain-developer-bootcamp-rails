@@ -11,6 +11,8 @@ module Blockchain
         args = event[:args]
         order_id = args[0]
         order = EXCHANGE.call.orders(order_id)
+        user = Ethereum::Formatter.new.to_address(args[1])
+        userFill = Ethereum::Formatter.new.to_address(args[6])
         tokenGive = args[4]
         etherAmount, tokenAmount = extract_ether_token_amount(args)
         tokenPrice = calculate_token_price(etherAmount, tokenAmount)
@@ -18,7 +20,7 @@ module Blockchain
         orderType = order[4] == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
         orderSign = orderType == 'buy' ? '+' : '-'
         
-        trade_events << {orderId: order_id, etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp, orderType: orderType, orderSign: orderSign}
+        trade_events << {orderId: order_id, etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp, orderType: orderType, orderSign: orderSign, user: user, userFill: userFill}
       end
       trade_events
     end
