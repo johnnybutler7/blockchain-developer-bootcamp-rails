@@ -6,8 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	 <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -17,6 +18,11 @@
 		  </div>
 		<% end %>
 		
-    <%= yield %>
+		<div>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary"><a class="navbar-brand" href="#/">DApp Token Exchange</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link small" href="https://etherscan.io/address/0x99134c63Bc8ed92751C484959bE384511d0Fe390" target="_blank" rel="noopener noreferrer">0x99134c63Bc8ed92751C484959bE384511d0Fe390</a></li></ul></nav>
+		</div>
+		<div class='content'>
+      <%= yield %>
+		</div>
   </body>
 </html>
