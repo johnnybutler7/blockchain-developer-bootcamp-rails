@@ -7,6 +7,7 @@ RSpec.feature 'Withdraw Tokens', :type => :system do
     
     visit accounts_path
     start_token_amount = find('#exchange-token-balance').text.to_f
+    click_link "Withdraw"
     within('#withdraw-token-form') do
       fill_in 'token_amount', with: withdraw_token_amount
       click_on 'Withdraw'

@@ -1,4 +1,4 @@
-<%= form_tag token_withdrawals_path, class: 'row' do |f| %>
+<%= form_tag token_withdrawals_path, class: 'row', id: 'withdraw-token-form' do |f| %>
 	<div class="col-12 col-sm pr-sm-2">
 		<%= text_field_tag  :token_amount, nil, placeholder: "DAPP Amount", class: "form-control form-control-sm bg-dark text-white" %>
 	</div>

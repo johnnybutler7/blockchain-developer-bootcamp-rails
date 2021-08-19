@@ -1,5 +1,5 @@
-<%= form_tag deposits_path, class: 'row' do |f| %>
-	<div id='deposit-ether-form' class="col-12 col-sm pr-sm-2">
+<%= form_tag deposits_path, class: 'row', id: 'deposit-ether-form' do |f| %>
+	<div class="col-12 col-sm pr-sm-2">
 		<%= text_field_tag :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", palceholder: "ETH Amount" %>
 	</div>
 	<div class="col-12 col-sm-auto pl-sm-0">

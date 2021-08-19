@@ -9,7 +9,7 @@ RSpec.feature 'New Order', :type => :system do
     click_on 'Buy Order'
     
     expect(page).to have_content('Buy order successfully placed')
-    within('#buy-orders') do
+    within('#order-book') do
       expect(page).to have_content('245')
       expect(page).to have_content('0.0023')
     end

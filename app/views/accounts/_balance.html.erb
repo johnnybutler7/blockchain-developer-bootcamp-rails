@@ -13,13 +13,21 @@
 						  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
 						</thead>
 						<tbody>
-							<tr><td>ETH</td><td><%= @ether_balance %></td><td><%= @exchange_ether_balance %></td></tr>
+							<tr>
+								<td>ETH</td>
+								<td id='wallet-ether-balance'><%= @ether_balance %></td>
+								<td id='exchange-ether-balance'><%= @exchange_ether_balance %></td>
+							</tr>
 						</tbody>
 					</table>
 					<%= render partial: 'new_ether_deposit' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
-							<tr><td>DAPP</td><td><%= format_token_balance(@token_balance) %></td><td><%= format_token_balance(@exchange_token_balance) %></td></tr>
+							<tr>
+								<td>DAPP</td>
+								<td id='wallet-token-balance'><%= format_token_balance(@token_balance) %></td>
+								<td id='exchange-token-balance'><%= format_token_balance(@exchange_token_balance) %></td>
+							</tr>
 						</tbody>
 					</table>
 					<%= render partial: 'new_token_deposit' %>
@@ -28,16 +36,26 @@
 				<div id='withdraw-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
 					<table class="table table-dark table-sm small">
 						<thead>
-							<tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
+							<tr><th>Token</th>
+								<th>Wallet</th>
+								<th>Exchange</th>
+							</tr>
 						</thead>
 						<tbody>
-							<tr><td>ETH</td><td><%= @ether_balance %></td><td><%= @exchange_ether_balance %></td></tr>
+							<tr>
+								<td>ETH</td>
+								<td><%= @ether_balance %></td>
+								<td><%= @exchange_ether_balance %></td>
+							</tr>
 						</tbody>
 					</table>
 				  <%= render partial: 'new_ether_withdrawal' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
-							<tr><td>DAPP</td><td><%= format_token_balance(@token_balance) %></td><td><%= format_token_balance(@exchange_token_balance) %></td></tr>
+							<tr>
+								<td>DAPP</td>
+								<td><%= format_token_balance(@token_balance) %></td>
+								<td><%= format_token_balance(@exchange_token_balance) %></td></tr>
 						</tbody>
 					</table>
 					<%= render partial: 'new_token_withdrawal' %>
@@ -51,7 +69,7 @@
 		<div class="card-body">
 			<nav class="bg-dark text-white nav nav-tabs" role="tablist">
 				<a href="#" role="tab" data-bs-toggle="tab" aria-selected="true" data-bs-target="#buy-order-form" class="nav-item nav-link active">Buy</a>
-				<a href="#" role="tab" data-bs-toggle="tab" aria-selected="false" data-bs-target="#sell-order-form" class="nav-item nav-link">Sell</a>
+				<a id='sell-order-tab' href="#" role="tab" data-bs-toggle="tab" aria-selected="false" data-bs-target="#sell-order-form" class="nav-item nav-link">Sell</a>
 	
 			</nav>
 			<div class="tab-content">

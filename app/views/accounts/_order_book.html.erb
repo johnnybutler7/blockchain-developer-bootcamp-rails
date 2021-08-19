@@ -2,7 +2,7 @@
 	<div class="card bg-dark text-white">
 		<div class="card-header">Order Book</div>
 		<div class="card-body order-book">
-			<table class="table table-dark table-sm small">
+			<table id='order-book' class="table table-dark table-sm small">
 				<tbody>
 					<% @sell_orders.each do |order| %>
 					  <tr id="sell-order-<%= order[:orderId] %>" class="order-book-order">

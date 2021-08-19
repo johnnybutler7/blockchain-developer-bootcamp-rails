@@ -7,6 +7,7 @@ RSpec.feature 'Withdraw Ether', :type => :system do
     
     visit accounts_path
     start_eth_amount = find('#exchange-ether-balance').text.to_f
+    click_link 'Withdraw'
     within('#withdraw-ether-form') do
       fill_in 'ether_amount', with: withdraw_eth_amount
       click_on 'Withdraw'
