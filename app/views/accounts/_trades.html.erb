@@ -1,0 +1,25 @@
+<div class="vertical">
+	<div class="card bg-dark text-white">
+		<div class="card-header">Trades</div>
+		<div class="card-body">
+			<table id='trades' class="table table-dark table-sm small">
+				<thead>
+					<tr>
+						<th>Time</th>
+						<th>DAPP</th>
+						<th>DAPP/ETH</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @trades.each do |trade| %>
+					  <tr id='trade-<%= trade[:orderId] %>'>
+						  <td class="text-muted"><%= trade[:formattedTimestamp]%></td>
+						  <td><%= trade[:tokenAmount] %></td>
+						  <td><%= trade[:tokenPrice] %></td>
+					  </tr>
+				  <% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

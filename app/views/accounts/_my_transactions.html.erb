@@ -1,0 +1,52 @@
+	<div class="card bg-dark text-white">
+		<div class="card-header">My Transactions</div>
+		<div class="card-body">
+			<nav class="bg-dark text-white nav nav-tabs" role="tablist">
+				<a href="#" role="tab" data-bs-toggle="tab"  data-bs-target="#my-trades" aria-selected="true" class="nav-item nav-link active">Trades</a>
+				<a href="#" role="tab" data-bs-toggle="tab" data-bs-target="#my-orders" aria-selected="false" class="nav-item nav-link">Orders</a>
+
+			</nav>
+			<div class="tab-content">
+				<div id="my-trades" role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
+					<table class="table table-dark table-sm small">
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>DAPP</th>
+								<th>DAPP/ETH</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @my_trades.each do |trade| %>
+								<tr id='my-trade-<%= trade[:orderId] %>'>
+									<td class="text-muted"><%= trade[:formattedTimestamp]%></td>
+									<td><%= trade[:orderSign]%><%= trade[:tokenAmount] %></td>
+									<td><%= trade[:tokenPrice] %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+				<div id="my-orders" role="tabpanel" aria-hidden="true" class="fade tab-pane">
+					<table class="table table-dark table-sm small">
+						<thead>
+							<tr>
+								<th>Amount</th>
+								<th>DAPP/ETH</th>
+								<th>Cancel</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @my_orders.each do |order| %>
+								<tr id="my-order-<%= order[:orderId] %>">
+									<td><%= order[:tokenAmount]%></td>
+									<td><%= order[:tokenPrice] %></td>
+									<td class="text-muted cancel-order"><%= link_to 'Cancel', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]} %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
