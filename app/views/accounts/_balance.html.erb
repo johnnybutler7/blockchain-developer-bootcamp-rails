@@ -3,11 +3,11 @@
 		<div class="card-header">Balance</div>
 		<div class="card-body">
 		  <nav class="bg-dark text-white nav nav-tabs" role="tablist">
-				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#deposit" aria-selected="true" class="nav-item nav-link active">Deposit</a>
-				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#withdraw" aria-selected="false" class="nav-item nav-link">Withdraw</a>
+				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#deposit-form" aria-selected="true" class="nav-item nav-link active">Deposit</a>
+				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#withdraw-form" aria-selected="false" class="nav-item nav-link">Withdraw</a>
 			</nav>
 			<div class="tab-content">
-				<div id='deposit' role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
+				<div id='deposit-form' role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
 				  <table class="table table-dark table-sm small">
 					  <thead>
 						  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
@@ -16,104 +16,50 @@
 							<tr><td>ETH</td><td><%= @ether_balance %></td><td><%= @exchange_ether_balance %></td></tr>
 						</tbody>
 					</table>
-					<form class="row">
-						<div class="col-12 col-sm pr-sm-2">
-							<input type="text" placeholder="ETH Amount" class="form-control form-control-sm bg-dark text-white" required="">
-						</div>
-						<div class="col-12 col-sm-auto pl-sm-0">
-							<button type="submit" class="btn btn-primary btn-block btn-sm">Deposit</button>
-						</div>
-					</form>
+					<%= render partial: 'new_ether_deposit' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
 							<tr><td>DAPP</td><td><%= format_token_balance(@token_balance) %></td><td><%= format_token_balance(@exchange_token_balance) %></td></tr>
 						</tbody>
 					</table>
-					<form class="row">
-						<div class="col-12 col-sm pr-sm-2">
-							<input type="text" placeholder="DAPP Amount" class="form-control form-control-sm bg-dark text-white" required="">
-						</div>
-						<div class="col-12 col-sm-auto pl-sm-0">
-							<button type="submit" class="btn btn-primary btn-block btn-sm">Deposit</button>
-						</div>
-					</form>
+					<%= render partial: 'new_token_deposit' %>
 				</div>
 		
-				<div id='withdraw' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
+				<div id='withdraw-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
 					<table class="table table-dark table-sm small">
 						<thead>
 							<tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
 						</thead>
 						<tbody>
-							<tr><td>ETH</td><td>98.89</td><td>0.74</td></tr>
+							<tr><td>ETH</td><td><%= @ether_balance %></td><td><%= @exchange_ether_balance %></td></tr>
 						</tbody>
 					</table>
-					<form class="row">
-						<div class="col-12 col-sm pr-sm-2">
-							<input type="text" placeholder="ETH Amount" class="form-control form-control-sm bg-dark text-white" required="">
-						</div>
-						<div class="col-12 col-sm-auto pl-sm-0">
-							<button type="submit" class="btn btn-primary btn-block btn-sm">Withdraw</button>
-						</div>
-					</form>
+				  <%= render partial: 'new_ether_withdrawal' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
-							<tr><td>DAPP</td><td>990000</td><td>385</td></tr>
+							<tr><td>DAPP</td><td><%= format_token_balance(@token_balance) %></td><td><%= format_token_balance(@exchange_token_balance) %></td></tr>
 						</tbody>
 					</table>
-					<form class="row">
-						<div class="col-12 col-sm pr-sm-2">
-							<input type="text" placeholder="DAPP Amount" class="form-control form-control-sm bg-dark text-white" required="">
-						</div>
-						<div class="col-12 col-sm-auto pl-sm-0">
-							<button type="submit" class="btn btn-primary btn-block btn-sm">Withdraw</button>
-						</div>
-					</form>
+					<%= render partial: 'new_token_withdrawal' %>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div class="card bg-dark text-white">
 		<div class="card-header">New Order</div>
 		<div class="card-body">
 			<nav class="bg-dark text-white nav nav-tabs" role="tablist">
-				<a href="#" role="tab" data-rb-event-key="buy" aria-selected="true" class="nav-item nav-link active">Buy</a>
-				<a href="#" role="tab" data-rb-event-key="sell" aria-selected="false" class="nav-item nav-link">Sell</a>
+				<a href="#" role="tab" data-bs-toggle="tab" aria-selected="true" data-bs-target="#buy-order-form" class="nav-item nav-link active">Buy</a>
+				<a href="#" role="tab" data-bs-toggle="tab" aria-selected="false" data-bs-target="#sell-order-form" class="nav-item nav-link">Sell</a>
+	
 			</nav>
 			<div class="tab-content">
-				<div role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
-					<form>
-						<div class="form-group small">
-							<label>Buy Amount (DAPP)</label>
-							<div class="input-group">
-								<input type="text" class="form-control form-control-sm bg-dark text-white" placeholder="Buy Amount" required="">
-							</div>
-						</div>
-						<div class="form-group small">
-							<label>Buy Price</label>
-							<div class="input-group">
-								<input type="text" class="form-control form-control-sm bg-dark text-white" placeholder="Buy Price" required="">
-							</div>
-						</div>
-						<button type="submit" class="btn btn-primary btn-sm btn-block">Buy Order</button>
-					</form>
+				<div role="tabpanel" id='buy-order-form' aria-hidden="false" class="fade bg-dark tab-pane active show">
+					<%= render partial: 'new_buy_order' %>
 				</div>
-				<div role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
-					<form>
-						<div class="form-group small">
-							<label>Buy Sell (DAPP)</label>
-							<div class="input-group">
-								<input type="text" class="form-control form-control-sm bg-dark text-white" placeholder="Sell amount" required="">
-							</div>
-						</div>
-						<div class="form-group small">
-							<label>Sell Price</label>
-							<div class="input-group">
-								<input type="text" class="form-control form-control-sm bg-dark text-white" placeholder="Sell Price" required="">
-							</div>
-						</div>
-						<button type="submit" class="btn btn-primary btn-sm btn-block">Sell Order</button>
-					</form>
+				<div id='sell-order-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
+					<%= render partial: 'new_sell_order' %>
 				</div>
 			</div>
 		</div>

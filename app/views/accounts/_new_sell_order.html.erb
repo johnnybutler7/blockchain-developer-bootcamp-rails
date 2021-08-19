@@ -1,10 +1,15 @@
 <%= form_tag sell_orders_path do |f| %>
-
-<table>
-	<tr><td>Sell Amount</td><td><%= text_field_tag  :sell_amount %></td></tr>
-	<tr><td>Sell price</td><td><%= text_field_tag :sell_price %></td></tr>
-	
-	<tr><td><%= submit_tag 'Sell Order' %></td></tr>
-</table>
-
+	<div class="form-group small">
+		<label>Sell (DAPP)</label>
+		<div class="input-group">
+			<%= text_field_tag  :sell_amount, nil, class:"form-control form-control-sm bg-dark text-white", placeholder:"Sell amount"  %>
+		</div>
+	</div>
+	<div class="form-group small">
+		<label>Sell Price</label>
+		<div class="input-group">
+			<%= text_field_tag :sell_price, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Sell Price" %>
+		</div>
+	</div>
+	<%= submit_tag 'Sell Order',  class: "btn btn-primary btn-sm btn-block" %>
 <% end %>
