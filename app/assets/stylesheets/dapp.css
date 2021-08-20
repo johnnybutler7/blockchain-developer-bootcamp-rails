@@ -152,3 +152,7 @@ td.cancel-order {
 tr.order-book-order {
   cursor: pointer;
 }
+
+.dapp-table a {
+	text-decoration: none;
+}

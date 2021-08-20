@@ -5,4 +5,12 @@ module ApplicationHelper
     val = (val * precision).round / precision
     val
   end
+  
+  def format_datetime(val)
+    val.strftime("%I:%M:%S%P %d/%m/%y")
+  end
+  
+  def buy_or_sell_color(val)
+    val == "buy" ? 'text-success' : 'text-danger'
+  end
 end

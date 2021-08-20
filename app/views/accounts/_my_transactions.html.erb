@@ -7,7 +7,7 @@
 
 			</nav>
 			<div class="tab-content">
-				<div id="my-trades" role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
+				<div id="my-trades" role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show dapp-table">
 					<table class="table table-dark table-sm small">
 						<thead>
 							<tr>
@@ -19,16 +19,16 @@
 						<tbody>
 							<% @my_trades.each do |trade| %>
 								<tr id='my-trade-<%= trade[:orderId] %>'>
-									<td class="text-muted"><%= trade[:formattedTimestamp]%></td>
-									<td><%= trade[:orderSign]%><%= trade[:tokenAmount] %></td>
-									<td><%= trade[:tokenPrice] %></td>
+									<td class="text-muted"><%= format_datetime(trade[:formattedTimestamp]) %></td>
+									<td class="<%= buy_or_sell_color(trade[:orderType]) %>"><%= trade[:orderSign]%><%= trade[:tokenAmount] %></td>
+									<td class="<%= buy_or_sell_color(trade[:orderType]) %>"><%= trade[:tokenPrice] %></td>
 								</tr>
 							<% end %>
 						</tbody>
 					</table>
 				</div>
 				<div id="my-orders" role="tabpanel" aria-hidden="true" class="fade tab-pane">
-					<table class="table table-dark table-sm small">
+					<table class="table table-dark table-sm small dapp-table">
 						<thead>
 							<tr>
 								<th>Amount</th>
@@ -39,9 +39,9 @@
 						<tbody>
 							<% @my_orders.each do |order| %>
 								<tr id="my-order-<%= order[:orderId] %>">
-									<td><%= order[:tokenAmount]%></td>
-									<td><%= order[:tokenPrice] %></td>
-									<td class="text-muted cancel-order"><%= link_to 'Cancel', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]} %></td>
+									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenAmount]%></td>
+									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenPrice] %></td>
+									<td class="text-muted cancel-order"><%= link_to 'X', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]}, title: "Click here to cancel", class: 'text-danger' %></td>
 								</tr>
 							<% end %>
 						</tbody>

@@ -5,7 +5,7 @@ RSpec.feature 'Cancel Order', :type => :system do
   it "Enables me to cancel an order" do
     visit accounts_path
     click_on "Orders"
-    cancel_order_link  = first(:link, "Cancel")
+    cancel_order_link  = first(:link, "X")
     cancel_order_id = cancel_order_link["data-order-id"] 
     
     cancel_order_link.click

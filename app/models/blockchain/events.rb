@@ -17,8 +17,15 @@ module Blockchain
         etherAmount, tokenAmount = extract_ether_token_amount(args)
         tokenPrice = calculate_token_price(etherAmount, tokenAmount)
         formattedTimestamp = Time.at(args[7])
-        orderType = order[4] == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
+        
+        myOrder = user == account
+        if myOrder
+          orderType = order[4] == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
+        else
+          orderType = order[4] == ENV['ETHER_ADDRESS'] ? 'sell' : 'buy'
+        end
         orderSign = orderType == 'buy' ? '+' : '-'
+        
         
         trade_events << {orderId: order_id, etherAmount: etherAmount, tokenAmount: Ethereum::Formatter.new.from_wei(tokenAmount), tokenPrice: tokenPrice, formattedTimestamp: formattedTimestamp, orderType: orderType, orderSign: orderSign, user: user, userFill: userFill}
       end

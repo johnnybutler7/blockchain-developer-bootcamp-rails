@@ -13,7 +13,7 @@
 				<tbody>
 					<% @trades.each do |trade| %>
 					  <tr id='trade-<%= trade[:orderId] %>'>
-						  <td class="text-muted"><%= trade[:formattedTimestamp]%></td>
+						  <td class="text-muted"><%= format_datetime(trade[:formattedTimestamp]) %></td>
 						  <td><%= trade[:tokenAmount] %></td>
 						  <td><%= trade[:tokenPrice] %></td>
 					  </tr>

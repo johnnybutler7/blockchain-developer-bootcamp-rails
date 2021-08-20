@@ -7,7 +7,7 @@ RSpec.feature 'Fill Order', :type => :system do
     sell_order_id = ''
     
     within('#order-book') do
-      sell_order_link  = first(:link, "Sell")
+      sell_order_link = find(".sell-order", match: :first)
       sell_order_id = sell_order_link["data-order-id"] 
     
       sell_order_link.click
