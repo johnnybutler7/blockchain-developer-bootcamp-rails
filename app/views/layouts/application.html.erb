@@ -15,15 +15,15 @@
 	  <div id='root'>
 			<div>
 				
+			  <% flash.each do |type, msg| %>
+			    <div>
+			      <%= msg %>
+			    </div>
+			  <% end %>
+				
 				<%= render partial: 'shared/header' %>
 				
 					<div class='content'>
-					  <% flash.each do |type, msg| %>
-					    <div>
-					      <%= msg %>
-					    </div>
-					  <% end %>
-			
 		        <%= yield %>
 				  </div>
 				

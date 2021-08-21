@@ -14,18 +14,20 @@ class OrdersController < ApplicationController
   end
   
   def fill
-    order_id = params[:order_id]
-    
-    EXCHANGE.transact_and_wait.fill_order(order_id.to_i)
+    EXCHANGE.transact_and_wait.fill_order(order_id)
     
     redirect_to accounts_path, notice: 'Order successfully filled'
   end
   
   def cancel
-    order_id = params[:order_id]
-    
-    EXCHANGE.transact_and_wait.cancel_order(order_id.to_i)
+    EXCHANGE.transact_and_wait.cancel_order(order_id)
     
     redirect_to accounts_path, notice: 'Order successfully cancelled'
+  end
+  
+  private
+  
+  def order_id
+    params[:order_id].to_i
   end
 end

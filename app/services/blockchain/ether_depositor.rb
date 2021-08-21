@@ -9,8 +9,12 @@ module Blockchain
       transaction = build_transaction
       transaction.sign(key)
       BlOCKCHAIN_CLIENT.eth_send_raw_transaction(transaction.hex)
+    rescue IOError => e
+      OpenStruct.new({success?: false, error: e})
+    else
+      OpenStruct.new({success?: true})
     end
-  
+
     private
   
     attr_reader :function_name, :amount
