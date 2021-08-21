@@ -13,11 +13,8 @@
 						  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>ETH</td>
-								<td id='wallet-ether-balance'><%= @ether_balance %></td>
-								<td id='exchange-ether-balance'><%= @exchange_ether_balance %></td>
-							</tr>
+						    <%= render partial: 'ether_balances', locals: {ether_balance: @ether_balance, 
+																															 exchange_ether_balance: @exchange_ether_balance} %>
 						</tbody>
 					</table>
 					<%= render partial: 'new_ether_deposit' %>
@@ -43,10 +40,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>ETH</td>
-								<td><%= @ether_balance %></td>
-								<td><%= @exchange_ether_balance %></td>
-							</tr>
+							 <td>ETH</td>
+							 <td><%= @ether_balance %></td>
+							 <td><%= @exchange_ether_balance %></td>
+						  </tr>
 						</tbody>
 					</table>
 				  <%= render partial: 'new_ether_withdrawal' %>
