@@ -1,0 +1,16 @@
+<%= turbo_stream.replace('ether-balances',
+                          partial: "accounts/ether_balances",
+                          locals: { 
+                            ether_balance: @ether_balance, 
+														exchange_ether_balance: @exchange_ether_balance
+													}) %>
+													
+<%= turbo_stream.replace('token-ether-balances',
+                          partial: "accounts/token_ether_balances",
+                          locals: { 
+                            ether_balance: @ether_balance, 
+														exchange_ether_balance: @exchange_ether_balance
+													}) %>
+																						
+<%= turbo_stream.replace('new-ether-deposit',
+                          partial: "accounts/new_ether_deposit") %>

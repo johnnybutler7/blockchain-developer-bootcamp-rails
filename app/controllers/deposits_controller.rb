@@ -7,14 +7,7 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       if ether_deposit.success?
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('ether-balances',
-                                                     partial: "accounts/ether_balances",
-                                                     locals: { 
-                                                       ether_balance: @ether_balance, 
-																										   exchange_ether_balance: @exchange_ether_balance
-                                                      })
-        end 
+        format.turbo_stream {}
         format.html { redirect_to accounts_path, notice: 'Successfully deposited Ether' }  
       else
         format.html { redirect_to accounts_path, notice: "There was a problem depositing Ether - #{ether_deposit.error}" }

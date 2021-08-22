@@ -39,11 +39,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-							 <td>ETH</td>
-							 <td><%= @ether_balance %></td>
-							 <td><%= @exchange_ether_balance %></td>
-						  </tr>
+					    <%= render partial: 'token_ether_balances', locals: {ether_balance: @ether_balance, 
+																														       exchange_ether_balance: @exchange_ether_balance} %>
 						</tbody>
 					</table>
 				  <%= render partial: 'new_ether_withdrawal' %>
