@@ -156,3 +156,7 @@ tr.order-book-order {
 .dapp-table a {
 	text-decoration: none;
 }
+
+#toasts{
+	z-index: 2;
+}

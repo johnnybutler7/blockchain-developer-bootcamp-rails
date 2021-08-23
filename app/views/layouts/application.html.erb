@@ -14,19 +14,24 @@
   <body>
 	  <div id='root'>
 			<div>
-				
+
 			  <% flash.each do |type, msg| %>
 			    <div>
 			      <%= msg %>
 			    </div>
 			  <% end %>
-				
+
 				<%= render partial: 'shared/header' %>
 				
+				<%= render partial: 'shared/toasts' %>
+				
+				
+				
 					<div class='content'>
+						
 		        <%= yield %>
 				  </div>
-				
+					
 			</div>
 		</div>
 		

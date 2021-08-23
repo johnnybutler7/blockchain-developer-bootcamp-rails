@@ -14,3 +14,5 @@
 																						
 <%= turbo_stream.replace('new-ether-deposit',
                           partial: "accounts/new_ether_deposit") %>
+													
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "You successfuly deposited Ether", notice_at: @notice_at } %>

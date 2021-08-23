@@ -4,6 +4,7 @@ class DepositsController < ApplicationController
 
     @ether_balance = Ethereum::Formatter.new.from_wei(BlOCKCHAIN_CLIENT.eth_get_balance(@current_account)['result'].hex)
     @exchange_ether_balance = Ethereum::Formatter.new.from_wei(EXCHANGE.call.balance_of(ENV['ETHER_ADDRESS'], @current_account))
+    @notice_at = Time.now
 
     respond_to do |format|
       if ether_deposit.success?
