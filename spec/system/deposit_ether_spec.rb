@@ -12,7 +12,7 @@ RSpec.feature 'Deposit Ether', :type => :system do
       click_on 'Deposit'
     end
 
-    within('#toasts') do
+    within('.notices') do
       expect(page).to have_content('You successfuly deposited Ether')
     end
     within('#exchange-ether-balance') do

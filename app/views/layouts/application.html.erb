@@ -13,24 +13,17 @@
 
   <body>
 	  <div id='root'>
-			<div>
+		  <div>
 
-			  <% flash.each do |type, msg| %>
-			    <div>
-			      <%= msg %>
-			    </div>
-			  <% end %>
+		    <%= render partial: 'shared/flash_notices' %>
 
 				<%= render partial: 'shared/header' %>
 				
 				<%= render partial: 'shared/toasts' %>
 				
-				
-				
-					<div class='content'>
-						
-		        <%= yield %>
-				  </div>
+				<div class='content'>
+				  <%= yield %>
+				</div>
 					
 			</div>
 		</div>
