@@ -1,0 +1,5 @@
+<tr id='my-trade-<%= trade[:orderId] %>'>
+	<td class="text-muted"><%= format_datetime(trade[:formattedTimestamp]) %></td>
+	<td class="<%= buy_or_sell_color(trade[:orderType]) %>"><%= trade[:orderSign]%><%= trade[:tokenAmount] %></td>
+	<td class="<%= buy_or_sell_color(trade[:orderType]) %>"><%= trade[:tokenPrice] %></td>
+</tr>

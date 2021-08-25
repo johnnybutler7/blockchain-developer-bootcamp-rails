@@ -14,9 +14,22 @@ class OrdersController < ApplicationController
   end
   
   def fill
-    EXCHANGE.transact_and_wait.fill_order(order_id)
+    @order_id = order_id
+    order_fill = Blockchain::OrderFiller.new(order_id: order_id).call
     
-    redirect_to accounts_path, notice: 'Order successfully filled'
+    @trade = order_fill.response
+    @ether_balance = Ethereum::Formatter.new.from_wei(BlOCKCHAIN_CLIENT.eth_get_balance(@current_account)['result'].hex)
+    @exchange_ether_balance = Ethereum::Formatter.new.from_wei(EXCHANGE.call.balance_of(ENV['ETHER_ADDRESS'], @current_account))
+    @notice_at = Time.now
+
+    respond_to do |format|
+      if order_fill.success?
+        format.turbo_stream {}
+        format.html { redirect_to accounts_path, notice: 'Order successfully filled' }  
+      else
+        format.html { redirect_to accounts_path, notice: "There was a problem fulfilling your order - #{order_fill.error}" }
+      end
+    end
   end
   
   def cancel

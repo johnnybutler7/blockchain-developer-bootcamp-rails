@@ -1,0 +1,24 @@
+<%= turbo_stream.replace('ether-balances',
+                          partial: "accounts/ether_balances",
+                          locals: { 
+                            ether_balance: @ether_balance, 
+														exchange_ether_balance: @exchange_ether_balance
+													}) %>
+													
+<%= turbo_stream.replace('token-ether-balances',
+                          partial: "accounts/token_ether_balances",
+                          locals: { 
+                            ether_balance: @ether_balance, 
+														exchange_ether_balance: @exchange_ether_balance
+													}) %>
+
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Order successfully filled ", notice_at: @notice_at } %>
+
+<%= turbo_stream.remove("sell-order-#{@order_id}") %>
+
+<%= turbo_stream.append('my-trades',
+                          partial: "accounts/my_trade",
+                          locals: { 
+                            trade: @trade
+													}) %>
+
