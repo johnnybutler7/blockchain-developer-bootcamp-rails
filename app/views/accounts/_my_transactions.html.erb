@@ -7,7 +7,7 @@
 
 			</nav>
 			<div class="tab-content">
-				<div role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show dapp-table">
+				<div id="my-trades" role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show dapp-table">
 					<table class="table table-dark table-sm small">
 						<thead>
 							<tr>
@@ -16,7 +16,7 @@
 								<th>DAPP/ETH</th>
 							</tr>
 						</thead>
-						<tbody id="my-trades">
+						<tbody id='my-trades-list'>
 							<% @my_trades.each do |trade| %>
 							  <%= render partial: 'accounts/my_trade', locals: {trade: trade}%>
 							<% end %>

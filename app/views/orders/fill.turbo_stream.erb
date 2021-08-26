@@ -16,8 +16,14 @@
 
 <%= turbo_stream.remove("sell-order-#{@order_id}") %>
 
-<%= turbo_stream.append('my-trades',
+<%= turbo_stream.append('my-trades-list',
                           partial: "accounts/my_trade",
+                          locals: { 
+                            trade: @trade
+													}) %>
+													
+<%= turbo_stream.append('all-trades-list',
+                          partial: "accounts/trade",
                           locals: { 
                             trade: @trade
 													}) %>

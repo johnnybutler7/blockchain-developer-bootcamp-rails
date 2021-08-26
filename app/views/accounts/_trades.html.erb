@@ -10,13 +10,9 @@
 						<th>DAPP/ETH</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id='all-trades-list'>
 					<% @trades.each do |trade| %>
-					  <tr id='trade-<%= trade[:orderId] %>'>
-						  <td class="text-muted"><%= format_datetime(trade[:formattedTimestamp]) %></td>
-						  <td><%= trade[:tokenAmount] %></td>
-						  <td><%= trade[:tokenPrice] %></td>
-					  </tr>
+					  <%= render partial: 'accounts/trade', locals: {trade: trade}%>
 				  <% end %>
 				</tbody>
 			</table>
