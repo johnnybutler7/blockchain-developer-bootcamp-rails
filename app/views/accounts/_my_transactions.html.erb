@@ -37,7 +37,7 @@
 								<tr id="my-order-<%= order[:orderId] %>">
 									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenAmount]%></td>
 									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenPrice] %></td>
-									<td class="text-muted cancel-order"><%= link_to 'X', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]}, title: "Click here to cancel", class: 'text-danger' %></td>
+									<td class="text-muted cancel-order"><%= button_to 'X', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]}, title: "Click here to cancel", class: 'btn btn-link text-decoration-none text-danger' %></td>
 								</tr>
 							<% end %>
 						</tbody>
