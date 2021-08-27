@@ -5,11 +5,12 @@ module Blockchain
     end
   
     def run
-     response = transaction.run
-    rescue IOError => e
-      OpenStruct.new({success?: false, error: e})
-    else
-      OpenStruct.new({success?: true, response: response})
+      begin
+        response = transaction.run
+        OpenStruct.new({success?: true, response: response})
+      rescue IOError => e
+        OpenStruct.new({success?: false, error: e})
+       end
     end
 
     private

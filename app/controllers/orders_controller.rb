@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     @order_id = order_id
     order_fill = Dapp::OrderFill.new(order_id: @order_id)
     result = Blockchain::Runner.new(transaction: order_fill).run
-  
+
     respond_to do |format|
       if result.success?
         @trade = result.response
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
         format.turbo_stream {}
         format.html { redirect_to accounts_path, notice: 'Order successfully filled' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem fulfilling your order - #{order_fill.error}" }
+        format.html { redirect_to accounts_path, notice: "There was a problem fulfilling your order - #{result.error}" }
       end
     end
   end
