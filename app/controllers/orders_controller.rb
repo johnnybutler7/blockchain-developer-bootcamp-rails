@@ -15,14 +15,15 @@ class OrdersController < ApplicationController
   
   def fill
     @order_id = order_id
-    order_fill = Blockchain::OrderFiller.new(order_id: order_id).call
-    
-    @trade = order_fill.response
-    @dapp_status = Dapp::Status.new
-    @notice_at = Time.now
-
+    order_fill = Dapp::OrderFill.new(order_id: @order_id)
+    result = Blockchain::Runner.new(transaction: order_fill).run
+  
     respond_to do |format|
-      if order_fill.success?
+      if result.success?
+        @trade = result.response
+        @dapp_status = Dapp::Status.new
+        @notice_at = Time.now
+
         format.turbo_stream {}
         format.html { redirect_to accounts_path, notice: 'Order successfully filled' }  
       else

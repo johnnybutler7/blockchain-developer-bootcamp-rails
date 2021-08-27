@@ -2,8 +2,11 @@ class AccountsController < ApplicationController
   def index
     @dapp_status = Dapp::Status.new
 
-    trade_events = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call
-    @trades = Blockchain::Events.new(events: trade_events).trades
+    exchange_trade_log = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call
+    
+    
+    @trades = Dapp::Trades.new(trades: exchange_trade_log).decorate
+    #@trades = Blockchain::Events.new(events: trade_events).trades
     
     order_events = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').call
     open_orders = Blockchain::Events.new(events: order_events).open_orders
