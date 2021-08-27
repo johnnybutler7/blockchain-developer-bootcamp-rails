@@ -18,8 +18,7 @@ class OrdersController < ApplicationController
     order_fill = Blockchain::OrderFiller.new(order_id: order_id).call
     
     @trade = order_fill.response
-    @ether_balance = Ethereum::Formatter.new.from_wei(BlOCKCHAIN_CLIENT.eth_get_balance(@current_account)['result'].hex)
-    @exchange_ether_balance = Ethereum::Formatter.new.from_wei(EXCHANGE.call.balance_of(ENV['ETHER_ADDRESS'], @current_account))
+    @dapp_status = Dapp::Status.new
     @notice_at = Time.now
 
     respond_to do |format|

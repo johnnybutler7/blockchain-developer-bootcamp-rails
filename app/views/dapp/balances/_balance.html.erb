@@ -13,8 +13,7 @@
 						  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
 						</thead>
 						<tbody>
-						    <%= render partial: 'ether_balances', locals: {ether_balance: @ether_balance, 
-																															 exchange_ether_balance: @exchange_ether_balance} %>
+						    <%= render partial: 'dapp/balances/ether_balances', locals: { dapp_status: dapp_status } %>
 						</tbody>
 					</table>
 					<%= render partial: 'new_ether_deposit' %>
@@ -22,8 +21,8 @@
 						<tbody>
 							<tr>
 								<td>DAPP</td>
-								<td id='wallet-token-balance'><%= format_token_balance(@token_balance) %></td>
-								<td id='exchange-token-balance'><%= format_token_balance(@exchange_token_balance) %></td>
+								<td id='wallet-token-balance'><%= format_token_balance(dapp_status.token_balance) %></td>
+								<td id='exchange-token-balance'><%= format_token_balance(dapp_status.exchange_token_balance) %></td>
 							</tr>
 						</tbody>
 					</table>
@@ -39,8 +38,7 @@
 							</tr>
 						</thead>
 						<tbody>
-					    <%= render partial: 'token_ether_balances', locals: {ether_balance: @ether_balance, 
-																														       exchange_ether_balance: @exchange_ether_balance} %>
+					    <%= render partial: 'dapp/balances/token_ether_balances', locals: { dapp_status: dapp_status } %>
 						</tbody>
 					</table>
 				  <%= render partial: 'new_ether_withdrawal' %>
@@ -48,8 +46,8 @@
 						<tbody>
 							<tr>
 								<td>DAPP</td>
-								<td><%= format_token_balance(@token_balance) %></td>
-								<td><%= format_token_balance(@exchange_token_balance) %></td></tr>
+								<td><%= format_token_balance(dapp_status.token_balance) %></td>
+								<td><%= format_token_balance(dapp_status.exchange_token_balance) %></td></tr>
 						</tbody>
 					</table>
 					<%= render partial: 'new_token_withdrawal' %>

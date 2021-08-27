@@ -1,18 +1,14 @@
-module Blockchain
-  class EtherDepositor
+module Dapp
+  class EtherDeposit
     def initialize(amount:)
       @amount = amount
       @function_name = 'depositEther'
     end
   
-    def call
+    def run
       transaction = build_transaction
       transaction.sign(key)
       BlOCKCHAIN_CLIENT.eth_send_raw_transaction(transaction.hex)
-    rescue IOError => e
-      OpenStruct.new({success?: false, error: e})
-    else
-      OpenStruct.new({success?: true})
     end
 
     private
