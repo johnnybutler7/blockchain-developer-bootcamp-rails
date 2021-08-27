@@ -1,5 +1,5 @@
-<tr id='trade-<%= trade[:orderId] %>'>
-  <td class="text-muted"><%= format_datetime(trade[:formattedTimestamp]) %></td>
-  <td><%= trade[:tokenAmount] %></td>
-  <td><%= trade[:tokenPrice] %></td>
+<tr id='trade-<%= trade.order_id %>'>
+  <td class="text-muted"><%= format_datetime(trade.formatted_timestamp) %></td>
+  <td><%= trade.token_amount %></td>
+  <td><%= trade.token_price %></td>
 </tr>

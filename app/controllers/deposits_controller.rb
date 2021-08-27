@@ -2,12 +2,12 @@ class DepositsController < ApplicationController
   def create
     ether_deposit = Dapp::EtherDeposit.new(amount: Ethereum::Formatter.new.to_wei(ether_amount))
     result = Blockchain::Runner.new(transaction: ether_deposit).run
-    
-    @dapp_status = Dapp::Status.new
-    @notice_at = Time.now
 
     respond_to do |format|
       if result.success?
+        @dapp_status = Dapp::Status.new
+        @notice_at = Time.now
+        
         format.turbo_stream {}
         format.html { redirect_to accounts_path, notice: 'Successfully deposited Ether' }  
       else

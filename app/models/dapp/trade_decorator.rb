@@ -8,18 +8,16 @@ module Dapp
     def decorate
       ether_amount, token_amount = extract_ether_token_amount
       token_price = calculate_token_price(ether_amount, token_amount)
-
-      {
-        orderId: order_id, 
-        etherAmount: ether_amount,
-        tokenAmount: Ethereum::Formatter.new.from_wei(token_amount), 
-        tokenPrice: token_price, 
-        formattedTimestamp: formatted_timestamp, 
-        orderType: order_type, 
-        orderSign: order_sign, 
-        user: user, 
-        userFill: user_fill
-      }
+      
+      Dapp::Trade.new(order_id: order_id, 
+                      ether_amount: ether_amount,
+                      token_amount: Ethereum::Formatter.new.from_wei(token_amount), 
+                      token_price: token_price, 
+                      formatted_timestamp: formatted_timestamp, 
+                      order_type: order_type, 
+                      order_sign: order_sign, 
+                      user: user, 
+                      user_fill: user_fill)
     end
     
     private
