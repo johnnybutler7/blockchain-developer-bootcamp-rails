@@ -5,10 +5,10 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       if result.success?
-        @dapp_status = Dapp::Status.new
-        @notice_at = Time.now
-        
-        format.turbo_stream {}
+        format.turbo_stream {
+          @dapp_status = Dapp::Status.new
+          @notice_at = Time.now
+        }
         format.html { redirect_to accounts_path, notice: 'Successfully deposited Ether' }  
       else
         format.html { redirect_to accounts_path, notice: "There was a problem depositing Ether - #{result.error}" }

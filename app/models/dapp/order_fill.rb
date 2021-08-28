@@ -6,7 +6,7 @@ module Dapp
 
     def run
       transaction = EXCHANGE.transact_and_wait.fill_order(order_id)
-      trade = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call.detect{|e| e[:transactionHash] == transaction.id }
+      trade = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').find_by_transaction_id(transaction.id)
       Dapp::TradeDecorator.new(trade: trade).decorate
     end
 

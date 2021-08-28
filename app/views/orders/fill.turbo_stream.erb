@@ -10,8 +10,6 @@
                            dapp_status: @dapp_status
 													}) %>
 
-<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Order successfully filled ", notice_at: @notice_at } %>
-
 <%= turbo_stream.remove("sell-order-#{@order_id}") %>
 
 <%= turbo_stream.append('my-trades-list',
@@ -25,4 +23,9 @@
                           locals: { 
                             trade: @trade
 													}) %>
+													
+<%= turbo_stream.append "toasts", 
+												partial: "shared/toast", 
+												locals: { message: "Order successfully filled ", 
+													notice_at: @trade.formatted_timestamp } %>
 

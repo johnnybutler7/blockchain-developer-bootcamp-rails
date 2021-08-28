@@ -20,11 +20,10 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if result.success?
-        @trade = result.response
-        @dapp_status = Dapp::Status.new
-        @notice_at = Time.now
-
-        format.turbo_stream {}
+        format.turbo_stream {
+          @trade = result.response
+          @dapp_status = Dapp::Status.new
+        }
         format.html { redirect_to accounts_path, notice: 'Order successfully filled' }  
       else
         format.html { redirect_to accounts_path, notice: "There was a problem fulfilling your order - #{result.error}" }
