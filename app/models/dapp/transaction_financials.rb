@@ -9,11 +9,11 @@ module Dapp
     end
 
     def ether_amount
-      token_give_is_ether_address? ? amount_give : amount_get
+      token_give_is_contract_address? ? amount_give : amount_get
     end
     
     def token_amount
-      token_give_is_ether_address? ? amount_get : amount_give
+      token_give_is_contract_address? ? amount_get : amount_give
     end
 
     def token_price
@@ -23,7 +23,7 @@ module Dapp
     
     private
     
-    def token_give_is_ether_address?
+    def token_give_is_contract_address?
       token_give == ENV['ETHER_ADDRESS'] 
     end
   end

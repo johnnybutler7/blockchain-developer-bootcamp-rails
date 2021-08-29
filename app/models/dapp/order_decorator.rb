@@ -51,7 +51,7 @@ module Dapp
     end
 
     def order_type
-      order[4] == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
+      token_give == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
     end
     
     def amount_get
