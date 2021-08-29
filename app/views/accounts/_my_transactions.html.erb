@@ -34,10 +34,10 @@
 						</thead>
 						<tbody>
 							<% @my_orders.each do |order| %>
-								<tr id="my-order-<%= order[:orderId] %>">
-									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenAmount]%></td>
-									<td class="<%= buy_or_sell_color(order[:orderType]) %>"><%= order[:tokenPrice] %></td>
-									<td class="text-muted cancel-order"><%= button_to 'X', order_cancel_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]}, title: "Click here to cancel", class: 'btn btn-link text-decoration-none text-danger' %></td>
+								<tr id="my-order-<%= order.order_id %>">
+									<td class="<%= buy_or_sell_color(order.order_type) %>"><%= order.token_amount %></td>
+									<td class="<%= buy_or_sell_color(order.order_type) %>"><%= order.token_price %></td>
+									<td class="text-muted cancel-order"><%= button_to 'X', order_cancel_path(order_id: order.order_id), method: :put, data: {order_id: order.order_id}, title: "Click here to cancel", class: 'btn btn-link text-decoration-none text-danger' %></td>
 								</tr>
 							<% end %>
 						</tbody>

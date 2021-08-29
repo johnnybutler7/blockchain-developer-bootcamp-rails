@@ -5,10 +5,10 @@
 			<table id='order-book' class="table table-dark table-sm small dapp-table">
 				<tbody>
 					<% @sell_orders.each do |order| %>
-					  <tr id="sell-order-<%= order[:orderId] %>" data-action="click->order-fill#click" data-controller="order-fill", data-order-fill-url="<%= order_fill_url(order_id: order[:orderId]) %>" data-order-id="<%= order[:orderId] %>" class='order-book-order buy-order'>
-						  <td><%= order[:tokenAmount]%></td>
-							<td class='text-danger'><%= order[:tokenPrice] %></td>
-							<td><%= order[:etherAmount] %></td>
+					  <tr id="sell-order-<%= order.order_id %>" data-action="click->order-fill#click" data-controller="order-fill", data-order-fill-url="<%= order_fill_url(order_id: order.order_id) %>" data-order-id="<%= order.order_id %>" class='order-book-order buy-order'>
+						  <td><%= order.token_amount %></td>
+							<td class='text-danger'><%= order.token_price %></td>
+							<td><%= order.ether_amount %></td>
 					  </tr>
 					<% end %>
 					<tr>
@@ -17,11 +17,11 @@
 						<th>ETH</th>
 					</tr>
 					<% @buy_orders.each do |order| %>
-					  <tr id="buy-order-<%= order[:orderId] %>" class='order-book-order'>
-						  <td><%= order[:tokenAmount]%></td>
-							<td><%= link_to order[:tokenPrice], order_fill_path(order_id: order[:orderId]), method: :put, data: {order_id: order[:orderId]}, class: 'text-success sell-order', title: 'Click here to sell' %>
+					  <tr id="buy-order-<%= order.order_id %>" class='order-book-order'>
+						  <td><%= order.token_amount %></td>
+							<td><%= link_to order.token_price, order_fill_path(order_id: order.order_id), method: :put, data: {order_id: order.order_id}, class: 'text-success sell-order', title: 'Click here to sell' %>
 					</td>
-							<td><%= order[:etherAmount] %></td>
+							<td><%= order.ether_amount %></td>
 					  </tr>
 				  <% end %>
 				</tbody>

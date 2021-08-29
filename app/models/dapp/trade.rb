@@ -5,7 +5,7 @@ module Dapp
     
     def initialize(order_id:, ether_amount:, token_amount:, token_price:, formatted_timestamp:,
                    order_type:, order_sign:, user:, user_fill:)
-      
+
       @order_id = order_id
       @ether_amount = ether_amount
       @token_amount = token_amount

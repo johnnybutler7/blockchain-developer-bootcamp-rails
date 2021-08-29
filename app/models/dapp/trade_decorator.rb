@@ -1,8 +1,7 @@
 module Dapp
   class TradeDecorator
-    
-    def initialize(trade:)
-      @trade = trade
+    def initialize(item:)
+      @item = item
     end
     
     def decorate
@@ -22,10 +21,10 @@ module Dapp
     
     private
     
-    attr_reader :trade
+    attr_reader :item
     
     def args
-      trade[:args]
+      item[:args]
     end
     
     def order_id
