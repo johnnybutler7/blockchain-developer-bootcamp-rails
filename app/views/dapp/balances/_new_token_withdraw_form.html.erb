@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "new-token-withdraw-form" do %>
+	<%= form_tag token_withdrawals_path, class: 'row', id: 'token-withdraw-form' do |f| %>
+		<div class="col-12 col-sm pr-sm-2">
+			<%= text_field_tag  :token_amount, nil, placeholder: "DAPP Amount", class: "form-control form-control-sm bg-dark text-white" %>
+		</div>
+		<div class="col-12 col-sm-auto pl-sm-0">
+			<%= submit_tag 'Withdraw', class: "btn btn-primary btn-block btn-sm" %>
+		</div>
+	<% end %>
+<% end %>

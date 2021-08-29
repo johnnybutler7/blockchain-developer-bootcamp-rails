@@ -1,5 +1,5 @@
-<tr id='ether-balances'>
+<tr id='deposit-ether-balances'>
   <td>ETH</td>
-  <td id='wallet-ether-balance'><%= dapp_status.ether_balance %></td>
-  <td id='exchange-ether-balance'><%= dapp_status.exchange_ether_balance %></td>
+  <td id='deposit-wallet-ether-balance'><%= format_decimals(dapp_status.ether_balance) %></td>
+  <td id='deposit-exchange-ether-balance'><%= format_decimals(dapp_status.exchange_ether_balance) %></td>
 </tr>

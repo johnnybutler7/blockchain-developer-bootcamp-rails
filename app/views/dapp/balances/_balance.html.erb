@@ -19,7 +19,7 @@
 					<%= render partial: 'dapp/balances/new_ether_deposit_form' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
-							<%= render partial: 'dapp/balances/withdraw_token_balances', locals: { dapp_status: dapp_status } %>
+							<%= render partial: 'dapp/balances/token_balances', locals: { dapp_status: dapp_status } %>
 						</tbody>
 					</table>
 					<%= render partial: 'dapp/balances/new_token_deposit_form' %>
@@ -40,10 +40,10 @@
 				  <%= render partial: 'dapp/balances/new_ether_withdraw_form' %>
 					<table class="table table-dark table-sm small">
 						<tbody>
-							<%= render partial: 'dapp/balances/token_balances', locals: { dapp_status: dapp_status } %>
+							<%= render partial: 'dapp/balances/withdraw_token_balances', locals: { dapp_status: dapp_status } %>
 						</tbody>
 					</table>
-					<%= render partial: 'new_token_withdrawal' %>
+					<%= render partial: 'dapp/balances/new_token_withdraw_form' %>
 				</div>
 			</div>
 		</div>

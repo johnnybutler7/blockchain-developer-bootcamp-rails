@@ -10,6 +10,10 @@ module ApplicationHelper
     val.strftime("%I:%M:%S%P %d/%m/%y")
   end
   
+  def format_decimals(number, places: 2)
+    sprintf("%.#{places}f", number)
+  end
+  
   def buy_or_sell_color(val)
     val == "buy" ? 'text-success' : 'text-danger'
   end

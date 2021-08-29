@@ -6,9 +6,9 @@ RSpec.feature 'Withdraw Tokens', :type => :system do
     withdraw_token_amount = 100
     
     visit accounts_path
-    start_token_amount = find('#exchange-token-balance').text.to_f
     click_link "Withdraw"
-    within('#withdraw-token-form') do
+    start_token_amount = find('#withdraw-exchange-token-balance').text.to_i
+    within('#token-withdraw-form') do
       fill_in 'token_amount', with: withdraw_token_amount
       click_on 'Withdraw'
     end
@@ -17,7 +17,7 @@ RSpec.feature 'Withdraw Tokens', :type => :system do
       expect(page).to have_content('Successfully withdrew Tokens')
     end
 
-    within('#exchange-token-balance') do
+    within('#withdraw-exchange-token-balance') do
       expect(page).to have_content((start_token_amount - withdraw_token_amount).to_i)
     end
   end
