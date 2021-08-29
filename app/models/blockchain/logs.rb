@@ -14,8 +14,7 @@ module Blockchain
     end
     
     def find_by_transaction_id(trans_id)
-      log_params = default_log_params.merge(transaction_hash: trans_id)
-      result = contract.parent.client.eth_get_logs(log_params)['result'].first
+      result = contract.parent.client.eth_get_logs(default_log_params)['result'].detect{|t| t['transactionHash'] == trans_id }
       decoded = decode_data(result['data'])
       result.merge(decoded).deep_symbolize_keys
     end

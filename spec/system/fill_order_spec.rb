@@ -32,11 +32,11 @@ RSpec.feature 'Fill Order', :type => :system do
     
       buy_order_link.click
     end
-    
+
     within('.notices') do
       expect(page).to have_content('Order successfully filled')
     end
-    within('#my-trades') do
+    within('#my-trades-list') do
       expect(page).to have_selector(:css, "tr#my-trade-#{buy_order_id}")
     end
     within('#order-book') do
