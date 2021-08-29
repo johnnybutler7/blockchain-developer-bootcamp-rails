@@ -19,6 +19,6 @@ class DepositsController < ApplicationController
   private
 
   def ether_amount
-    params[:ether_amount].to_i
+    params[:ether_amount].to_d
   end
 end

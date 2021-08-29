@@ -7,7 +7,7 @@ RSpec.feature 'Deposit Token', :type => :system do
     
     visit accounts_path
     start_token_amount = find('#exchange-token-balance').text.to_f
-    within('#deposit-token-form') do
+    within('#token-deposit-form') do
       fill_in 'token_amount', with: deposit_token_amount
       click_on 'Deposit'
     end

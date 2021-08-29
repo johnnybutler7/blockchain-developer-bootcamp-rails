@@ -1,7 +1,32 @@
 class WithdrawalsController < ApplicationController
+  
   def create
-    Blockchain::EtherWithdrawer.new(amount: Ethereum::Formatter.new.to_wei(params[:ether_amount].to_i)).call
+    ether_withdraw = Dapp::EtherWithdraw.new(amount: Ethereum::Formatter.new.to_wei(ether_amount))
+    result = Blockchain::Runner.new(transaction: ether_withdraw).run
 
-    redirect_to accounts_path, notice: 'Successfully withdrew Ether'
+    respond_to do |format|
+      if result.success?
+        format.turbo_stream {
+          @dapp_status = Dapp::Status.new
+          @notice_at = Time.now
+        }
+        format.html { redirect_to accounts_path, notice: 'Successfully withdrew Ether' }  
+      else
+        format.html { redirect_to accounts_path, notice: "There was a problem withdrawing Ether - #{result.error}" }
+      end
+    end
   end
+  
+  private
+  
+  def ether_amount
+    params[:ether_amount].to_d
+  end
+  
+  
+  # def create
+ #    Blockchain::EtherWithdrawer.new(amount: Ethereum::Formatter.new.to_wei(params[:ether_amount].to_i)).call
+ #
+ #    redirect_to accounts_path, notice: 'Successfully withdrew Ether'
+ #  end
 end

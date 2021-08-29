@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "new-ether-deposit" do %>
-  <%= form_tag deposits_path, class: 'row', id: 'deposit-ether-form' do |f| %>
+<%= turbo_frame_tag "new-ether-deposit-form" do %>
+  <%= form_tag deposits_path, class: 'row', id: 'ether-deposit-form' do |f| %>
 	  <div class="col-12 col-sm pr-sm-2">
 		  <%= text_field_tag :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", palceholder: "ETH Amount" %>
 	  </div>

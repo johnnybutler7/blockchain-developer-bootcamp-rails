@@ -10,7 +10,7 @@
                             dapp_status: @dapp_status
 													}) %>
 																						
-<%= turbo_stream.replace('new-token-deposit',
+<%= turbo_stream.replace('new-token-deposit-form',
                           partial: "dapp/balances/new_token_deposit_form") %>
 													
 <%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Successfully deposited Tokens", notice_at: @notice_at } %>

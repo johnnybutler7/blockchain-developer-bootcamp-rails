@@ -8,7 +8,7 @@ RSpec.feature 'Withdraw Ether', :type => :system do
     visit accounts_path
     start_eth_amount = find('#exchange-ether-balance').text.to_f
     click_link 'Withdraw'
-    within('#withdraw-ether-form') do
+    within('#ether-withdraw-form') do
       fill_in 'ether_amount', with: withdraw_eth_amount
       click_on 'Withdraw'
     end
@@ -16,6 +16,7 @@ RSpec.feature 'Withdraw Ether', :type => :system do
     within('.notices') do
       expect(page).to have_content('Successfully withdrew Ether')
     end
+    click_on 'Deposit'
     within('#exchange-ether-balance') do
       expect(page).to have_content((start_eth_amount - withdraw_eth_amount).round(2))
     end
