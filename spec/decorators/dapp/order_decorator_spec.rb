@@ -44,7 +44,8 @@ RSpec.describe Dapp::OrderDecorator, type: :decorator do
       :type=>"mined", 
       :args=>[26, "c04e86af403d9d7fcaaa9a1d0a829597e76e7cc1", "7b901b233069d82be68de41b4dffa72373d3c906", 100000000000000000000, "0000000000000000000000000000000000000000", 33000000000000000, 1630236889], 
       :contract=>"Exchange", 
-      :event=>"Order"}
+      :event=>"Order"
+    }
   end
   
   context 'sell transaction' do

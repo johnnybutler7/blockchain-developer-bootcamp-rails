@@ -5,7 +5,7 @@ module Dapp
       @decorator = decorator
     end
 
-    def decorate
+    def call
       decorated_items = []
       items.each do |item|
         decorated_items << decorator.new(item: item).decorate
