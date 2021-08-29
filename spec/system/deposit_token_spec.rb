@@ -12,7 +12,9 @@ RSpec.feature 'Deposit Token', :type => :system do
       click_on 'Deposit'
     end
     
-    expect(page).to have_content('Successfully deposited Tokens')
+    within('.notices') do
+      expect(page).to have_content('Successfully deposited Tokens')
+    end
     within('#exchange-token-balance') do
       expect(page).to have_content((start_token_amount + deposit_token_amount).to_i)
     end

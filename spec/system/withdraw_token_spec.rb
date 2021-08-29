@@ -13,7 +13,10 @@ RSpec.feature 'Withdraw Tokens', :type => :system do
       click_on 'Withdraw'
     end
     
-    expect(page).to have_content('Successfully withdrew Tokens')
+    within('.notices') do
+      expect(page).to have_content('Successfully withdrew Tokens')
+    end
+
     within('#exchange-token-balance') do
       expect(page).to have_content((start_token_amount - withdraw_token_amount).to_i)
     end
