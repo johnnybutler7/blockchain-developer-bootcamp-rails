@@ -5,23 +5,33 @@ module Dapp
     end
     
     def decorate
-      ether_amount, token_amount = extract_ether_token_amount
-      token_price = calculate_token_price(ether_amount, token_amount)
-      
-      Dapp::Trade.new(order_id: order_id, 
-                      ether_amount: ether_amount,
-                      token_amount: Ethereum::Formatter.new.from_wei(token_amount), 
-                      token_price: token_price, 
-                      formatted_timestamp: formatted_timestamp, 
-                      order_type: order_type, 
-                      order_sign: order_sign, 
-                      user: user, 
-                      user_fill: user_fill)
+      OpenStruct.new(trade_attributes)
     end
     
     private
     
     attr_reader :item
+    
+    def trade_attributes
+      financials = transaction_financials
+      {
+        order_id: order_id, 
+        ether_amount: financials.ether_amount,
+        token_amount: Ethereum::Formatter.new.from_wei(financials.token_amount), 
+        token_price: financials.token_price, 
+        formatted_timestamp: formatted_timestamp, 
+        order_type: order_type, 
+        order_sign: order_sign, 
+        user: user, 
+        user_fill: user_fill
+      }
+    end
+   
+    def transaction_financials
+      Dapp::TransactionFinancials.new(token_give: token_give, 
+                                      amount_get: amount_get, 
+                                      amount_give: amount_give)
+    end
     
     def args
       item[:args]
@@ -47,25 +57,8 @@ module Dapp
       args[4]
     end
     
-    def extract_ether_token_amount
-      if token_give == ENV['ETHER_ADDRESS']
-        etherAmount = args[5]
-        tokenAmount = args[3]
-      else
-        etherAmount = args[3]
-        tokenAmount = args[5]
-      end
-      [etherAmount, tokenAmount]
-    end
-    
-    def calculate_token_price(etherAmount, tokenAmount)
-      tokenPrice = (etherAmount.to_f / tokenAmount.to_f)
-      tokenPrice = (tokenPrice * PRECISION).round / PRECISION.to_f
-    end
-    
     def order_type
-      myOrder = user == account
-      if myOrder
+      if user == account
         token_give == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
       else
         token_give == ENV['ETHER_ADDRESS'] ? 'sell' : 'buy'
@@ -82,6 +75,14 @@ module Dapp
     
     def account
       BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
+    end
+    
+    def amount_get
+      args[3]
+    end
+    
+    def amount_give
+      args[5]
     end
   end
 end

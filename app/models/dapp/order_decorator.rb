@@ -5,20 +5,30 @@ module Dapp
     end
 
     def decorate
-      ether_amount, token_amount = extract_ether_token_amount
-      token_price = calculate_token_price(ether_amount, token_amount)
-  
-      Dapp::Order.new(order_id: order_id,
-                      ether_amount: Ethereum::Formatter.new.from_wei(ether_amount),
-                      token_amount: Ethereum::Formatter.new.from_wei(token_amount),
-                      token_price: token_price,
-                      order_type: order_type,
-                      user: user)
+      OpenStruct.new(order_attributes)
     end
     
     private
     
     attr_reader :item
+
+    def order_attributes
+      financials = transaction_financials
+      {
+        order_id: order_id,
+        ether_amount: Ethereum::Formatter.new.from_wei(financials.ether_amount),
+        token_amount: Ethereum::Formatter.new.from_wei(financials.token_amount),
+        token_price: transaction_financials.token_price,
+        order_type: order_type,
+        user: user
+      }
+    end
+    
+    def transaction_financials
+      Dapp::TransactionFinancials.new(token_give: token_give, 
+                                      amount_get: amount_get, 
+                                      amount_give: amount_give)
+    end
     
     def args
       item[:args]
@@ -40,24 +50,16 @@ module Dapp
       args[4]
     end
 
-    def extract_ether_token_amount
-      if token_give == ENV['ETHER_ADDRESS']
-        etherAmount = args[5]
-        tokenAmount = args[3]
-      else
-        etherAmount = args[3]
-        tokenAmount = args[5]
-      end
-      [etherAmount, tokenAmount]
-    end
-
-    def calculate_token_price(etherAmount, tokenAmount)
-      tokenPrice = (etherAmount.to_f / tokenAmount.to_f)
-      tokenPrice = (tokenPrice * PRECISION).round / PRECISION.to_f
-    end
-
     def order_type
       order[4] == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
+    end
+    
+    def amount_get
+      args[3]
+    end
+    
+    def amount_give
+      args[5]
     end
   end
 end
