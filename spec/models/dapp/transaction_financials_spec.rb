@@ -39,5 +39,4 @@ RSpec.describe Dapp::TransactionFinancials, type: :model do
       expect(@fiananicals.token_price).to eql 2.0
     end
   end
-  
 end
