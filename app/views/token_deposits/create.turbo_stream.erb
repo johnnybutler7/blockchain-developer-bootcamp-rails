@@ -1,0 +1,16 @@
+<%= turbo_stream.replace('token-balances',
+                          partial: "dapp/balances/token_balances",
+                          locals: { 
+			                      dapp_status: @dapp_status
+													}) %>
+													
+<%= turbo_stream.replace('ether-token-balances',
+                          partial: "dapp/balances/withdraw_token_balances",
+                          locals: { 
+                            dapp_status: @dapp_status
+													}) %>
+																						
+<%= turbo_stream.replace('new-token-deposit',
+                          partial: "dapp/balances/new_token_deposit_form") %>
+													
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Successfully deposited Tokens", notice_at: @notice_at } %>

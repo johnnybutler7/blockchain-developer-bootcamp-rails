@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "new-token-deposit" do %>
+	<%= form_tag token_deposits_path, class: 'row', id: 'deposit-token-form'  do |f| %>
+		<div class="col-12 col-sm pr-sm-2">
+			<%= text_field_tag :token_amount, nil, class: "form-control form-control-sm bg-dark text-white", palceholder: 'DAPP Amount', required: '' %>
+		</div>
+		<div class="col-12 col-sm-auto pl-sm-0">
+			<%= submit_tag 'Deposit', class: 'btn btn-primary btn-block btn-sm' %>
+		</div>
+	<% end %>
+<% end %>

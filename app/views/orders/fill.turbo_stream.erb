@@ -4,8 +4,8 @@
                            dapp_status: @dapp_status
 													}) %>
 													
-<%= turbo_stream.replace('token-ether-balances',
-                          partial: "dapp/balances/token_ether_balances",
+<%= turbo_stream.replace('withdraw-ether-balances',
+                          partial: "dapp/balances/withdraw_ether_balances",
                           locals: { 
                            dapp_status: @dapp_status
 													}) %>
