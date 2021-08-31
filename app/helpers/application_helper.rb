@@ -7,7 +7,7 @@ module ApplicationHelper
   end
   
   def format_datetime(val)
-    val.strftime("%I:%M:%S%P %d/%m/%y")
+    val.strftime("%I:%M:%S%P %d/%m")
   end
   
   def format_decimals(number, places: 2)

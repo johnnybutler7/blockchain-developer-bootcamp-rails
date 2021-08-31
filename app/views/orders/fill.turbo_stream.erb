@@ -18,7 +18,7 @@
                             trade: @trade
 													}) %>
 													
-<%= turbo_stream.append('all-trades-list',
+<%= turbo_stream.prepend('all-trades-list',
                           partial: "accounts/trade",
                           locals: { 
                             trade: @trade
