@@ -2,8 +2,9 @@ require 'rails_helper'
 RSpec.describe Dapp::TradeDecorator, type: :decorator do
   
   context 'buy transaction' do
-    before(:all) do
+    before(:each) do
       transaction = buy_transaction
+      allow_any_instance_of(Dapp::TradeDecorator).to receive(:user_is_account?).and_return(true)
       @trade_decorator = Dapp::TradeDecorator.new(item: transaction).decorate
     end
     
@@ -62,8 +63,9 @@ RSpec.describe Dapp::TradeDecorator, type: :decorator do
   end
   
   context 'sell transaction' do
-    before(:all) do
+    before(:each) do
       transaction = sell_transaction
+      allow_any_instance_of(Dapp::TradeDecorator).to receive(:user_is_account?).and_return(true)
       @trade_decorator = Dapp::TradeDecorator.new(item: transaction).decorate
     end
     

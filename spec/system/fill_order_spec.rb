@@ -7,13 +7,15 @@ RSpec.feature 'Fill Order', :type => :system do
     sell_order_id = ''
     
     within('#order-book') do
-      sell_order_link = find(".sell-order", match: :first)
+      sell_order_link = find(".fill-order", match: :first)
       sell_order_id = sell_order_link["data-order-id"] 
     
       sell_order_link.click
     end
     
-    expect(page).to have_content('Order successfully filled')
+    within('.notices') do
+      expect(page).to have_content('Order successfully filled')
+    end
     within('#my-trades') do
       expect(page).to have_selector(:css, "tr#my-trade-#{sell_order_id}")
     end
@@ -27,7 +29,7 @@ RSpec.feature 'Fill Order', :type => :system do
     buy_order_id = ''
     
     within('#order-book') do
-      buy_order_link = find(".buy-order", match: :first)
+      buy_order_link = find(".fill-order", match: :first)
       buy_order_id = buy_order_link["data-order-id"] 
     
       buy_order_link.click

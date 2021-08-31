@@ -58,7 +58,7 @@ module Dapp
     end
     
     def order_type
-      if user == account
+      if user_is_account?
         token_give == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
       else
         token_give == ENV['ETHER_ADDRESS'] ? 'sell' : 'buy'
@@ -83,6 +83,10 @@ module Dapp
     
     def amount_give
       args[5]
+    end
+    
+    def user_is_account?
+      user == account
     end
   end
 end

@@ -10,7 +10,7 @@
                            dapp_status: @dapp_status
 													}) %>
 
-<%= turbo_stream.remove("sell-order-#{@order_id}") %>
+<%= turbo_stream.remove("fill-order-#{@order_id}") %>
 
 <%= turbo_stream.append('my-trades-list',
                           partial: "accounts/my_trade",
