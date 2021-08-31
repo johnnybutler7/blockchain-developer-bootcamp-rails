@@ -1,0 +1,8 @@
+<%= turbo_stream.remove("my-order-#{@order_id}") %>
+
+<%= turbo_stream.remove("fill-order-#{@order_id}") %>
+
+<%= turbo_stream.append "toasts", 
+												partial: "shared/toast", 
+												locals: { message: "Order successfully cancelled", 
+													notice_at: @notice_at } %>

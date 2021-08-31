@@ -32,9 +32,20 @@ class OrdersController < ApplicationController
   end
   
   def cancel
-    EXCHANGE.transact_and_wait.cancel_order(order_id)
-    
-    redirect_to accounts_path, notice: 'Order successfully cancelled'
+    @order_id = order_id
+    order_cancel = Dapp::OrderCancel.new(order_id: @order_id)
+    result = Blockchain::Runner.new(transaction: order_cancel).run
+
+    respond_to do |format|
+      if result.success?
+        format.turbo_stream {
+          @notice_at = Time.now
+        }
+        format.html { redirect_to accounts_path, notice: 'Order successfully cancelled' }  
+      else
+        format.html { redirect_to accounts_path, notice: "There was a problem cancelling your order - #{result.error}" }
+      end
+    end
   end
   
   private
