@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe Dapp::TransactionsDecorator, type: :model do
   context 'Orders' do
     before(:all) do
-      @decorated_orders = Dapp::TransactionsDecorator.new(items: orders, decorator: Dapp::OrderDecorator).call
+      @decorated_orders = Dapp::TransactionsDecorator.new(items: orders).call
     end
     
     it 'returns a collection of orders' do

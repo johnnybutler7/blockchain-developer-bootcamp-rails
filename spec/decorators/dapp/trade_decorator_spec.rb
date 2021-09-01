@@ -5,7 +5,7 @@ RSpec.describe Dapp::TradeDecorator, type: :decorator do
     before(:each) do
       transaction = buy_transaction
       allow_any_instance_of(Dapp::TradeDecorator).to receive(:user_is_account?).and_return(true)
-      @trade_decorator = Dapp::TradeDecorator.new(item: transaction).decorate
+      @trade_decorator = Dapp::TradeDecorator.new(item: transaction, prev_token_price: 0.02).decorate
     end
     
     it '.order_id' do
@@ -43,6 +43,14 @@ RSpec.describe Dapp::TradeDecorator, type: :decorator do
     it '.user_fill' do
       expect(@trade_decorator.user_fill).to eql "0xfac023e806d7eecc933ee24890b96f04212da8ab"
     end
+    
+    it '.user_fill' do
+      expect(@trade_decorator.user_fill).to eql "0xfac023e806d7eecc933ee24890b96f04212da8ab"
+    end
+    
+    it '.trade_direction_class' do
+      expect(@trade_decorator.trade_direction_class).to eql "text-danger"
+    end
   end
   
   def buy_transaction
@@ -66,7 +74,7 @@ RSpec.describe Dapp::TradeDecorator, type: :decorator do
     before(:each) do
       transaction = sell_transaction
       allow_any_instance_of(Dapp::TradeDecorator).to receive(:user_is_account?).and_return(true)
-      @trade_decorator = Dapp::TradeDecorator.new(item: transaction).decorate
+      @trade_decorator = Dapp::TradeDecorator.new(item: transaction, prev_token_price: 0.0055).decorate
     end
     
     it '.order_id' do
@@ -103,6 +111,10 @@ RSpec.describe Dapp::TradeDecorator, type: :decorator do
     
     it '.user_fill' do
       expect(@trade_decorator.user_fill).to eql "0xc04e86af403d9d7fcaaa9a1d0a829597e76e7cc1"
+    end
+    
+    it '.trade_direction_class' do
+      expect(@trade_decorator.trade_direction_class).to eql "text-success"
     end
   end
   

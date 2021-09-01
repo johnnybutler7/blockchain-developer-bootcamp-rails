@@ -1,20 +1,19 @@
 module Dapp
   class TransactionsDecorator
-    def initialize(items:, decorator:)
+    def initialize(items:)
       @items = items
-      @decorator = decorator
     end
 
     def call
       decorated_items = []
       items.each do |item|
-        decorated_items << decorator.new(item: item).decorate
+        decorated_items << Dapp::OrderDecorator.new(item: item).decorate
       end
       decorated_items
     end
 
     private
 
-    attr_reader :items, :decorator
+    attr_reader :items
   end
 end

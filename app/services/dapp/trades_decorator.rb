@@ -1,15 +1,14 @@
 module Dapp
   class TradesDecorator
-    def initialize(items:, decorator:)
+    def initialize(items:)
       @items = items
-      @decorator = decorator
     end
 
     def call
       decorated_items = []
       prev_token_price = nil
       items.each do |item|
-        decorate_item = decorator.new(item: item, prev_token_price: prev_token_price).decorate
+        decorate_item = Dapp::TradeDecorator.new(item: item, prev_token_price: prev_token_price).decorate
         decorated_items << decorate_item
         prev_token_price = decorate_item.token_price
       end
@@ -18,6 +17,6 @@ module Dapp
 
     private
 
-    attr_reader :items, :decorator
+    attr_reader :items
   end
 end
