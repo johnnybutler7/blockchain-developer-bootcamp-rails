@@ -1,5 +1,5 @@
 <tr id='trade-<%= trade.order_id %>'>
   <td class="text-muted"><%= format_datetime(trade.formatted_timestamp) %></td>
   <td><%= trade.token_amount %></td>
-  <td><%= trade.token_price %></td>
+  <td class="<%= trade.trade_direction_class %>"><%= trade.token_price %></td>
 </tr>

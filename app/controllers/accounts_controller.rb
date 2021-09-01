@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
     @dapp_status = Dapp::Status.new
 
     exchange_trade_log = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call
-    @trades = Dapp::TransactionsDecorator.new(items: exchange_trade_log, decorator: Dapp::TradeDecorator).call
+    @trades = Dapp::TradesDecorator.new(items: exchange_trade_log, decorator: Dapp::TradeDecorator).call
     
     exchange_order_log = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').call
     open_orders_log = Dapp::OpenOrdersQuery.new(orders: exchange_order_log).execute

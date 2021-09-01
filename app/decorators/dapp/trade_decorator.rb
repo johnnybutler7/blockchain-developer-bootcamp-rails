@@ -1,7 +1,8 @@
 module Dapp
   class TradeDecorator
-    def initialize(item:)
+    def initialize(item:, prev_token_price:)
       @item = item
+      @prev_token_price = prev_token_price
     end
     
     def decorate
@@ -10,7 +11,7 @@ module Dapp
     
     private
     
-    attr_reader :item
+    attr_reader :item, :prev_token_price
     
     def trade_attributes
       financials = transaction_financials
@@ -23,8 +24,14 @@ module Dapp
         order_type: order_type, 
         order_sign: order_sign, 
         user: user, 
-        user_fill: user_fill
+        user_fill: user_fill,
+        trade_direction_class: trade_direction_class(financials.token_price)
       }
+    end
+    
+    def trade_direction_class(token_price)
+      return 'text-success' unless prev_token_price
+      token_price < prev_token_price ? 'text-danger' : 'text-success'
     end
    
     def transaction_financials
