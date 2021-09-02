@@ -13,6 +13,7 @@ module Dapp
     attr_reader :item
 
     def order_attributes
+      #byebug
       financials = transaction_financials
       {
         order_id: order_id,

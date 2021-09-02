@@ -1,0 +1,6 @@
+<tr id="fill-order-<%= order.order_id %>" data-action="click->order-fill#click" data-controller="order-fill", data-order-fill-url="<%= order_fill_url(order_id: order.order_id) %>" data-order-id="<%= order.order_id %>" class='order-book-order fill-order'>
+  <td><%= order.token_amount %></td>
+	<td class='text-success'><%= order.token_price %>
+</td>
+	<td><%= order.ether_amount %></td>
+</tr>

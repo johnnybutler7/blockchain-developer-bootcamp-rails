@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :withdrawals, only: [:create]
   resources :token_deposits, only: [:create]
   resources :token_withdrawals, only: [:create]
+  
+  root to: 'accounts#index'
 end

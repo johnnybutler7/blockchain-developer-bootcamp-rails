@@ -1,16 +1,19 @@
 class OrdersController < ApplicationController
   def create    
-    tokenAmount = params[:buy_amount]
-    price = params[:buy_price]
-   
-    tokenGet = TOKEN.address
-    tokenGive = ENV['ETHER_ADDRESS']
-    amountGet =  Ethereum::Formatter.new.to_wei(tokenAmount.to_i)
-    amountGive =  Ethereum::Formatter.new.to_wei(tokenAmount.to_i * price.to_f)
+    order_create = Dapp::OrderCreate.new(params: params)
+    result = Blockchain::Runner.new(transaction: order_create).run
     
-    EXCHANGE.transact_and_wait.make_order(tokenGet, amountGet, tokenGive, amountGive)
-    
-    redirect_to accounts_path, notice: 'Buy order successfully placed'
+    respond_to do |format|
+      if result.success?
+        format.turbo_stream {
+          @notice_at = Time.now
+          @order = result.response
+        }
+        format.html { redirect_to accounts_path, notice: 'Buy order successfully placed' }  
+      else
+        format.html { redirect_to accounts_path, notice: "There was a problem placing your buy order - #{result.error}" }
+      end
+    end
   end
   
   def fill
@@ -53,9 +56,5 @@ class OrdersController < ApplicationController
   
   def order_id
     params[:order_id].to_i
-  end
-  
-  def fill_order_params
-    params.permit(:prev_token_price)
   end
 end
