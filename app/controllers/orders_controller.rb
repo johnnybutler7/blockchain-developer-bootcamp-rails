@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     end
   end
   
-  def cancel
+  def destroy
     @order_id = order_id
     order_cancel = Dapp::OrderCancel.new(order_id: @order_id)
     result = Blockchain::Runner.new(transaction: order_cancel).run
@@ -55,6 +55,6 @@ class OrdersController < ApplicationController
   private
   
   def order_id
-    params[:order_id].to_i
+    params[:id].to_i
   end
 end
