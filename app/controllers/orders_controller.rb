@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     end
   end
   
-  def fill
+  def update
     @order_id = order_id
     prev_token_price = params[:prev_token_price].to_d
     order_fill = Dapp::OrderFill.new(order_id: @order_id, prev_token_price: prev_token_price)
