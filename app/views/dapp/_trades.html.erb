@@ -12,7 +12,7 @@
 				</thead>
 				<tbody id='all-trades-list'>
 					<% @trades.each do |trade| %>
-					  <%= render partial: 'accounts/trade', locals: {trade: trade}%>
+					  <%= render partial: 'dapp/trade', locals: {trade: trade}%>
 				  <% end %>
 				</tbody>
 			</table>

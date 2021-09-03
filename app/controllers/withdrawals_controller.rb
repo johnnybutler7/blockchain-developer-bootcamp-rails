@@ -10,9 +10,9 @@ class WithdrawalsController < ApplicationController
           @dapp_status = Dapp::Status.new
           @notice_at = Time.now
         }
-        format.html { redirect_to accounts_path, notice: 'Successfully withdrew Ether' }  
+        format.html { redirect_to dapp_path, notice: 'Successfully withdrew Ether' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem withdrawing Ether - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem withdrawing Ether - #{result.error}" }
       end
     end
   end

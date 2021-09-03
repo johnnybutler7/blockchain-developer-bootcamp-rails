@@ -5,7 +5,7 @@ RSpec.feature 'Withdraw Tokens', :type => :system do
   it "Enables me to deposit Tokens" do
     withdraw_token_amount = 100
     
-    visit accounts_path
+    visit root_path
     click_link "Withdraw"
     start_token_amount = find('#withdraw-exchange-token-balance').text.to_i
     within('#token-withdraw-form') do

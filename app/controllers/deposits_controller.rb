@@ -9,9 +9,9 @@ class DepositsController < ApplicationController
           @dapp_status = Dapp::Status.new
           @notice_at = Time.now
         }
-        format.html { redirect_to accounts_path, notice: 'Successfully deposited Ether' }  
+        format.html { redirect_to dapp_path, notice: 'Successfully deposited Ether' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem depositing Ether - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem depositing Ether - #{result.error}" }
       end
     end
   end

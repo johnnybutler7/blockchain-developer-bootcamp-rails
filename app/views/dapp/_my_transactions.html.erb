@@ -18,7 +18,7 @@
 						</thead>
 						<tbody id='my-trades-list'>
 							<% @my_trades.each do |trade| %>
-							  <%= render partial: 'accounts/my_trade', locals: {trade: trade}%>
+							  <%= render partial: 'dapp/my_trade', locals: {trade: trade}%>
 							<% end %>
 						</tbody>
 					</table>

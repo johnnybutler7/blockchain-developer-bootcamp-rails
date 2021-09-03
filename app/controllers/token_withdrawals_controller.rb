@@ -9,9 +9,9 @@ class TokenWithdrawalsController < ApplicationController
           @dapp_status = Dapp::Status.new
           @notice_at = Time.now
         }
-        format.html { redirect_to accounts_path, notice: 'Successfully withdrew Tokens' }  
+        format.html { redirect_to dapp_path, notice: 'Successfully withdrew Tokens' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem withdrawing your Tokens - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem withdrawing your Tokens - #{result.error}" }
       end
     end
   end
@@ -21,9 +21,4 @@ class TokenWithdrawalsController < ApplicationController
   def token_amount
     params[:token_amount].to_i
   end
-  # def create
-#     Blockchain::TokenWithdrawer.new(amount:Ethereum::Formatter.new.to_wei(params[:token_amount].to_i)).call
-#
-#     redirect_to accounts_path, notice: 'Successfully withdrew Tokens'
-#   end
 end

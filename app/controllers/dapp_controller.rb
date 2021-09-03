@@ -1,5 +1,5 @@
-class AccountsController < ApplicationController
-  def index
+class DappController < ApplicationController
+  def show
     @dapp_status = Dapp::Status.new
 
     exchange_trade_log = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call

@@ -9,9 +9,9 @@ class OrdersController < ApplicationController
           @notice_at = Time.now
           @order = result.response
         }
-        format.html { redirect_to accounts_path, notice: 'Buy order successfully placed' }  
+        format.html { redirect_to dapp_path, notice: 'Buy order successfully placed' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem placing your buy order - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem placing your buy order - #{result.error}" }
       end
     end
   end
@@ -28,9 +28,9 @@ class OrdersController < ApplicationController
           @trade = result.response
           @dapp_status = Dapp::Status.new
         }
-        format.html { redirect_to accounts_path, notice: 'Order successfully filled' }  
+        format.html { redirect_to dapp_path, notice: 'Order successfully filled' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem fulfilling your order - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem fulfilling your order - #{result.error}" }
       end
     end
   end
@@ -45,9 +45,9 @@ class OrdersController < ApplicationController
         format.turbo_stream {
           @notice_at = Time.now
         }
-        format.html { redirect_to accounts_path, notice: 'Order successfully cancelled' }  
+        format.html { redirect_to dapp_path, notice: 'Order successfully cancelled' }  
       else
-        format.html { redirect_to accounts_path, notice: "There was a problem cancelling your order - #{result.error}" }
+        format.html { redirect_to dapp_path, notice: "There was a problem cancelling your order - #{result.error}" }
       end
     end
   end

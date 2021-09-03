@@ -5,7 +5,7 @@ RSpec.feature 'Deposit Ether', :type => :system do
   it "Enables me to deposit Ether" do
     deposit_eth_amount = 2
     
-    visit accounts_path
+    visit root_path
     start_eth_amount = find('#deposit-exchange-ether-balance').text.to_f
     within('#ether-deposit-form') do
       fill_in 'ether_amount', with: deposit_eth_amount

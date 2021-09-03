@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature 'Cancel Order', :type => :system do
 
   it "Enables me to cancel an order" do
-    visit accounts_path
+    visit root_path
     click_on "Orders"
     cancel_order_link  = first(:button, "X")
     cancel_order_id = cancel_order_link["data-order-id"] 

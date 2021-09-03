@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature 'Fill Order', :type => :system do
 
   it "Enables me to fill a sell order" do
-    visit accounts_path
+    visit root_path
     sell_order_id = ''
     
     within('#order-book') do
@@ -25,7 +25,7 @@ RSpec.feature 'Fill Order', :type => :system do
   end
   
   it "Enables me to fill a buy order" do
-    visit accounts_path
+    visit root_path
     buy_order_id = ''
     
     within('#order-book') do

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  resources :accounts, only: [:index]
+  resource :dapp, only: [:show]
   resources :orders, only: [:create, :destroy, :update]
   resources :sell_orders, only: [:create]
   resources :deposits, only: [:create]
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :token_deposits, only: [:create]
   resources :token_withdrawals, only: [:create]
   
-  root to: 'accounts#index'
+  root to: 'dapp#show'
 end

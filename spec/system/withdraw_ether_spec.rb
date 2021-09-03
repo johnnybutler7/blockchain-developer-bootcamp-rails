@@ -5,7 +5,7 @@ RSpec.feature 'Withdraw Ether', :type => :system do
   it "Enables me to deposit Ether" do
     withdraw_eth_amount = 1
     
-    visit accounts_path
+    visit root_path
     click_link 'Withdraw'
     start_eth_amount = find('#withdraw-exchange-ether-balance').text.to_f
     within('#ether-withdraw-form') do
