@@ -1,5 +1,5 @@
 module Dapp
-  class OrderCreate
+  class SellOrder
     def initialize(params:)
       @params = params
     end
@@ -15,19 +15,19 @@ module Dapp
     attr_reader :params
     
     def token_get
-      TOKEN.address
-    end
-    
-    def amount_get
-      Ethereum::Formatter.new.to_wei(params[:buy_amount].to_i)
-    end
-    
-    def token_give
       ENV['ETHER_ADDRESS']
     end
     
+    def amount_get
+      Ethereum::Formatter.new.to_wei(params[:sell_amount].to_i * params[:sell_price].to_f)
+    end
+    
+    def token_give
+      TOKEN.address
+    end
+    
     def amount_give
-      Ethereum::Formatter.new.to_wei(params[:buy_amount].to_i * params[:buy_price].to_f)
+     Ethereum::Formatter.new.to_wei(params[:sell_amount].to_i)
     end
   end
 end

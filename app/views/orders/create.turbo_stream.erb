@@ -3,7 +3,13 @@
                           locals: { 
                             order: @order
 													}) %>
-																						
+													
+<%= turbo_stream.append('order-book',
+                          partial: "orders/buy_order",
+                          locals: { 
+                            order: @order
+													}) %>
+																		
 <%= turbo_stream.replace('new-buy-order-form',
                           partial: "dapp/balances/new_buy_order_form") %>
 													

@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def create    
-    order_create = Dapp::OrderCreate.new(params: params)
-    result = Blockchain::Runner.new(transaction: order_create).run
+    buy_order = Dapp::BuyOrder.new(params: params)
+    result = Blockchain::Runner.new(transaction: buy_order).run
     
     respond_to do |format|
       if result.success?

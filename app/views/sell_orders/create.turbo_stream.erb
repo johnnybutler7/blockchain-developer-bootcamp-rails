@@ -1,0 +1,16 @@
+<%= turbo_stream.prepend('my-orders-list',
+                          partial: "orders/my_order",
+                          locals: { 
+                            order: @order
+													}) %>
+													
+<%= turbo_stream.prepend('order-book',
+                          partial: "orders/sell_order",
+                          locals: { 
+                            order: @order
+													}) %>
+																		
+<%= turbo_stream.replace('new-sell-order-form',
+                          partial: "dapp/balances/new_sell_order_form") %>
+													
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Sell order successfully placed", notice_at: @notice_at } %>

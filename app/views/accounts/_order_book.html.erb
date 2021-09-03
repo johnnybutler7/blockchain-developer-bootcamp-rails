@@ -2,14 +2,10 @@
 	<div class="card bg-dark text-white">
 		<div class="card-header">Order Book</div>
 		<div class="card-body order-book">
-			<table id='order-book' class="table table-dark table-sm small dapp-table">
-				<tbody>
+			<table class="table table-dark table-sm small dapp-table">
+				<tbody id='order-book'>
 					<% @sell_orders.each do |order| %>
-					  <tr id="fill-order-<%= order.order_id %>" data-action="click->order-fill#click" data-controller="order-fill", data-order-fill-url="<%= order_fill_url(order_id: order.order_id) %>" data-order-id="<%= order.order_id %>" class='order-book-order fill-order'>
-						  <td><%= order.token_amount %></td>
-							<td class='text-danger'><%= order.token_price %></td>
-							<td><%= order.ether_amount %></td>
-					  </tr>
+					  <%= render partial: 'orders/sell_order', locals: {order: order}%>
 					<% end %>
 					<tr>
 						<th>DAPP</th>

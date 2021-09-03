@@ -11,6 +11,7 @@
 													}) %>
 
 <%= turbo_stream.remove("fill-order-#{@order_id}") %>
+<%= turbo_stream.remove("my-order-#{@order_id}") %>
 
 <%= turbo_stream.append('my-trades-list',
                           partial: "accounts/my_trade",
