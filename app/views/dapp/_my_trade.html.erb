@@ -1,5 +1,5 @@
 <tr id='my-trade-<%= trade.order_id %>'>
-	<td class="text-muted"><%= format_datetime(trade.formatted_timestamp) %></td>
+	<td class="text-muted"><%= format_dapp_datetime(trade.formatted_timestamp) %></td>
 	<td class="<%= buy_or_sell_color(trade.order_type) %>"><%= trade.order_sign%><%= trade.token_amount %></td>
 	<td class="<%= buy_or_sell_color(trade.order_type) %>"><%= trade.token_price %></td>
 </tr>

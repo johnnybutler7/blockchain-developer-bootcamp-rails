@@ -2,7 +2,7 @@
   <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <strong class="me-auto">DAAP Messenger</strong>
-      <small class="text-muted"><%= time_ago_in_words(notice_at, include_seconds: true) %> ago</small>
+      <small class="text-muted"><%= format_time(Time.now) %></small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">

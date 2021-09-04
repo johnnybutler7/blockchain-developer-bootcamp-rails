@@ -7,6 +7,10 @@ module Dapp
     def run
       EXCHANGE.transact_and_wait.withdraw_ether(amount)
     end
+    
+    def description
+      "withdrawing Ether"
+    end
 
     private
   
