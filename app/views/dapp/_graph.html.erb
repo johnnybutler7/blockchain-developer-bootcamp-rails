@@ -2,11 +2,10 @@
 	<div class="card-header">Price Chart</div><div class="card-body">
 		<div class="price-chart" style="position: relative;">
 			<div class="price">
-				<h4>DAPP/ETH &nbsp; <span class="text-danger">▼</span> &nbsp; 0.001</h4>
+				<h4>DAPP/ETH &nbsp; <%= price_symbol(@graph.last_price_change) %> &nbsp; <%= @graph.last_price %></h4>
 			</div>
-			<div id='chart'><%= @graph_data %></div>
+			<div id='chart'></div>
 			<script>
-				
 				var chartOptions = {
 				  chart: {
 						type: 'candlestick',
@@ -71,22 +70,13 @@
 				    }
 				  },
 					series: [{
-					  data: <%= @graph_data %>
+					  data: <%= @graph.series_data %>
 					}]
 				}
-				
-			var options = {
-			  chart: {
-			    type: 'candlestick'
-			  },
-				series: [{
-				  data: <%= @graph_data %>
-				}]
-			}
 
-			var chart = new ApexCharts(document.querySelector("#chart"), chartOptions);
+			  var chart = new ApexCharts(document.querySelector("#chart"), chartOptions);
 
-			chart.render();
+			  chart.render();
 			</script>
 		</div>
 	</div>
