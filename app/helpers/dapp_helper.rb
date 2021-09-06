@@ -7,7 +7,7 @@ module DappHelper
   end
   
   def format_dapp_datetime(val)
-    val.strftime("%I:%M:%S%P %d/%m")
+    val.strftime("%l:%M:%S%P %e/%-m")
   end
 
   def buy_or_sell_color(val)

@@ -1,4 +1,4 @@
-<tr id="fill-order-<%= order.order_id %>" data-action="click->order-fill#click" data-controller="order-fill", data-order-fill-url="<%= order_url(id: order.order_id) %>" data-order-id="<%= order.order_id %>" class='order-book-order fill-order'>
+<tr id="fill-order-<%= order.order_id %>" data-action="click->order-fill#click" data-controller="order-fill" data-toggle="tooltip" data-placement="right" title="Click here to sell" data-order-fill-url="<%= order_url(id: order.order_id) %>" data-order-id="<%= order.order_id %>" class='order-book-order fill-order'>
   <td><%= order.token_amount %></td>
 	<td class='text-success'><%= order.token_price %>
 </td>
