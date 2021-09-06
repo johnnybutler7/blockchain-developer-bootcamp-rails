@@ -1,12 +1,12 @@
 <%= turbo_frame_tag "new-buy-order-form" do %>
   <%= form_tag sell_orders_path, id: 'sell-order-form' do |f| %>
-		<div class="form-group small">
+		<div class="form-group small w-100">
 			<label>Sell Amount (DAPP)</label>
 			<div class="input-group">
 				<%= text_field_tag  :sell_amount, nil, class:"form-control form-control-sm bg-dark text-white", placeholder:"Sell amount"  %>
 			</div>
 		</div>
-		<div class="form-group small">
+		<div class="form-group small w-100">
 			<label>Sell Price</label>
 			<div class="input-group">
 				<%= text_field_tag :sell_price, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Sell Price" %>
