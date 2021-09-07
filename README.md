@@ -5,7 +5,7 @@ Personal project building a decentralised Ruby on Rails web application to compa
 More details coming soon.
 
 # Technologies
-- Ethereum.rb (Web3 gem to interact with the blockchain)
+- Ethereum.rb (Gem wrapper to interact with the Ethereum blockchain)
 - ROR 6.1
 - Hotwire/Stimulus
 - Ruby 3.0
