@@ -1,24 +1,20 @@
-# README
+# Project Details
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Rails decentralised web application as part of a learning exercise to compare what was built as part of a blockchain developer bootcamp here: https://github.com/johnnybutler7/blockchain-developer-bootcamp
+This will form the basis of a blog post to compare the relevant technologies from my background/perspective.
 
-Things you may want to cover:
+More details coming soon. WIP
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Technologies
+- Solidity
+- Ethereum.rb (Gem wrapper to interact with the Ethereum blockchain)
+- ROR 6.1
+- Hotwire/Stimulus
+- Ruby 3.0
+- RSPEC
+- Truffle
+- Ganache (local dev)
+- Ropsten (staging)
+- Infura
+- Bootstrap
+- Heroku (staging) - URL coming soon
