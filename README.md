@@ -1,8 +1,9 @@
 # Project Details
 
-Personal project building a decentralised Ruby on Rails web application to compare what was built as part of a blockchain developer bootcamp here: https://github.com/johnnybutler7/blockchain-developer-bootcamp
+Ruby on Rails decentralised web application as part of a learning exercise to compare what was built as part of a blockchain developer bootcamp here: https://github.com/johnnybutler7/blockchain-developer-bootcamp
+This will form the basis of a blog post to compare the relevant technologies from my background/perspective.
 
-More details coming soon.
+More details coming soon. WIP
 
 # Technologies
 - Solidity
@@ -16,3 +17,4 @@ More details coming soon.
 - Ropsten (staging)
 - Infura
 - Bootstrap
+- Heroku (staging) - URL coming soon
