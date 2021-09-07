@@ -7,11 +7,12 @@ class DepositsController < ApplicationController
       if result.success?
         format.turbo_stream {
           @dapp_status = Dapp::Status.new
-          @notice_at = Time.now
         }
         format.html { redirect_to dapp_path, notice: 'Successfully deposited Ether' }  
       else
-        format.html { redirect_to dapp_path, notice: "There was a problem depositing Ether - #{result.error}" }
+        @error_message = result.error_message
+        format.html { redirect_to dapp_path, notice: @error_message }
+        format.turbo_stream { render 'shared/turbo_error' }
       end
     end
   end

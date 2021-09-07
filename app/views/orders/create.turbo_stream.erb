@@ -13,4 +13,4 @@
 <%= turbo_stream.replace('new-buy-order-form',
                           partial: "dapp/balances/new_buy_order_form") %>
 													
-<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Buy order successfully placed", notice_at: @notice_at } %>
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Buy order successfully placed" } %>

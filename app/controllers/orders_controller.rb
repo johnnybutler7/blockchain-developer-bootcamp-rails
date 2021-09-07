@@ -6,12 +6,13 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if result.success?
         format.turbo_stream {
-          @notice_at = Time.now
           @order = result.response
         }
         format.html { redirect_to dapp_path, notice: 'Buy order successfully placed' }  
       else
-        format.html { redirect_to dapp_path, notice: "There was a problem placing your buy order - #{result.error}" }
+        @error_message = result.error_message
+        format.html { redirect_to dapp_path, notice: @error_message }
+        format.turbo_stream { render 'shared/turbo_error' }
       end
     end
   end
@@ -30,7 +31,9 @@ class OrdersController < ApplicationController
         }
         format.html { redirect_to dapp_path, notice: 'Order successfully filled' }  
       else
-        format.html { redirect_to dapp_path, notice: "There was a problem fulfilling your order - #{result.error}" }
+        @error_message = result.error_message
+        format.html { redirect_to dapp_path, notice: @error_message}
+        format.turbo_stream { render 'shared/turbo_error' }
       end
     end
   end
@@ -42,12 +45,12 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if result.success?
-        format.turbo_stream {
-          @notice_at = Time.now
-        }
+        format.turbo_stream {}
         format.html { redirect_to dapp_path, notice: 'Order successfully cancelled' }  
       else
-        format.html { redirect_to dapp_path, notice: "There was a problem cancelling your order - #{result.error}" }
+        @error_message = result.error_message
+        format.html { redirect_to dapp_path, notice: @error_message }
+        format.turbo_stream { render 'shared/turbo_error' }
       end
     end
   end

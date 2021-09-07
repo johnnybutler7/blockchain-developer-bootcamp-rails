@@ -9,6 +9,10 @@ module Dapp
       order = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').find_by_transaction_id(transaction.id)
       Dapp::OrderDecorator.new(item: order).decorate
     end
+    
+    def description
+      'placing your sell order'
+    end
 
     private
   

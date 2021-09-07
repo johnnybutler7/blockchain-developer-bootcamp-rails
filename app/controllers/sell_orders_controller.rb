@@ -6,12 +6,13 @@ class SellOrdersController < ApplicationController
     respond_to do |format|
       if result.success?
         format.turbo_stream {
-          @notice_at = Time.now
           @order = result.response
         }
         format.html { redirect_to dapp_path, notice: 'Sell order successfully placed' }  
       else
-        format.html { redirect_to dapp_path, notice: "There was a problem placing your sell order - #{result.error}" }
+        @error_message = result.error_message
+        format.html { redirect_to dapp_path, notice: @error_message }
+        format.turbo_stream { render 'shared/turbo_error' }
       end
     end
   end

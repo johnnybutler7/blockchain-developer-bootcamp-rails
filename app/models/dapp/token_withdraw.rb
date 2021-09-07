@@ -7,6 +7,10 @@ module Dapp
     def run
       EXCHANGE.transact_and_wait.withdraw_token(TOKEN.address, amount)
     end
+    
+    def description
+      "withdrawing Tokens"
+    end
 
     private
   

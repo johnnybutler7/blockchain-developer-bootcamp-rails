@@ -7,6 +7,10 @@ module Dapp
     def run
       EXCHANGE.transact_and_wait.cancel_order(order_id)
     end
+    
+    def description
+      "cancelling your order"
+    end
 
     private
   

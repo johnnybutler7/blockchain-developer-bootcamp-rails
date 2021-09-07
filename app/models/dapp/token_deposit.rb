@@ -8,6 +8,10 @@ module Dapp
       TOKEN.transact_and_wait.approve(EXCHANGE.address, amount)
       EXCHANGE.transact_and_wait.deposit_token(TOKEN.address, amount)
     end
+    
+    def description
+      "depositing Tokens"
+    end
 
     private
   

@@ -13,4 +13,4 @@
 <%= turbo_stream.replace('new-ether-withdraw-form',
                           partial: "dapp/balances/new_ether_withdraw_form") %>
 													
-<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Successfully withdrew Ether", notice_at: @notice_at } %>
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Successfully withdrew Ether" } %>

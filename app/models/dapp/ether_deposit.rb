@@ -10,6 +10,10 @@ module Dapp
       transaction.sign(key)
       BlOCKCHAIN_CLIENT.eth_send_raw_transaction(transaction.hex)
     end
+    
+    def description
+      "depositing Ether"
+    end
 
     private
   
