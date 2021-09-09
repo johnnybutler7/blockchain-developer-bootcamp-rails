@@ -23,6 +23,7 @@ gem 'redis', '~> 4.0'
 
 gem 'hotwire-rails'
 
+gem 'ffi', github: 'ffi/ffi', submodules: true
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

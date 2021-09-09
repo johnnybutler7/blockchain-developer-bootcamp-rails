@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/ffi/ffi.git
+  revision: 7429c5ad8df9ea49c85e28de8f018e7f69dfeaf6
+  submodules: true
+  specs:
+    ffi (1.15.4)
+
+GIT
   remote: https://github.com/makevoid/digest-sha3-ruby
   revision: 887b1051dd8d642ad9b16ea2ba075e3463051d83
   ref: 887b1051dd8d642ad9b16ea2ba075e3463051d83
@@ -107,7 +114,6 @@ GEM
     ethereum.rb (2.5)
       activesupport (>= 4.0)
       digest-sha3 (~> 1.1)
-    ffi (1.15.3)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -276,6 +282,7 @@ DEPENDENCIES
   dotenv-rails
   eth (~> 0.4.12)
   ethereum.rb
+  ffi!
   hotwire-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
