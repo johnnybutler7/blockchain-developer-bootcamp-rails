@@ -37,7 +37,6 @@ gem 'eth','~> 0.4.12'
 #gem 'eth'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 # end
 
 group :development do
@@ -52,6 +51,7 @@ group :development do
   
   gem 'rspec-rails'
   gem 'rexml'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :test do
