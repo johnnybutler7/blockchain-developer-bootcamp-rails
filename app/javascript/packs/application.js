@@ -17,4 +17,3 @@ import "@hotwired/turbo-rails"
 import ApexCharts from 'apexcharts'
 window.ApexCharts = ApexCharts
 
-

@@ -18,10 +18,10 @@ class OrdersController < ApplicationController
   end
   
   def update
-    @order_id = order_id
-    prev_token_price = params[:prev_token_price].to_d
-    order_fill = Dapp::OrderFill.new(order_id: @order_id, prev_token_price: prev_token_price)
-    result = Blockchain::Runner.new(transaction: order_fill).run
+    # @order_id = order_id
+ #    prev_token_price = params[:prev_token_price].to_d
+ #    order_fill = Dapp::OrderFill.new(order_id: @order_id, prev_token_price: prev_token_price)
+ #    result = Blockchain::Runner.new(transaction: order_fill).run
 
     respond_to do |format|
       if result.success?

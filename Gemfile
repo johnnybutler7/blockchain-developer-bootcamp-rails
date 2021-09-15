@@ -28,10 +28,11 @@ gem 'hotwire-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'digest-sha3-patched', github: 'sydneyitguy/digest-sha3-ruby', ref: '517f1941bd6be6a28f8cc16e3dd72e4171fec6fa'
+#gem 'digest-sha3-patched', github: 'sydneyitguy/digest-sha3-ruby', ref: '517f1941bd6be6a28f8cc16e3dd72e4171fec6fa'
 gem 'digest-sha3', git: 'https://github.com/makevoid/digest-sha3-ruby', ref: '887b1051dd8d642ad9b16ea2ba075e3463051d83'
-gem 'ethereum.rb'#, path: '/Users/johnbutler/git_projects/dapps/ethereum.rb/'
-gem 'eth','~> 0.4.12'
+#gem 'ethereum.rb'#, path: '/Users/johnbutler/git_projects/dapps/ethereum.rb/'
+#gem 'eth','~> 0.4.12'
+gem 'web3-eth', git: 'https://github.com/Bloxy-info/web3-eth'
 
 #gem 'eth'
 
