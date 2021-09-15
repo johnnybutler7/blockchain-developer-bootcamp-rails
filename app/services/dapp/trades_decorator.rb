@@ -12,6 +12,7 @@ module Dapp
         decorated_items << decorate_item
         prev_token_price = decorate_item.token_price
       end
+      decorated_items
     end
 
     private
