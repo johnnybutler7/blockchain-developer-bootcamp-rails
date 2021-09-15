@@ -98,19 +98,10 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
-    eth (0.4.12)
-      digest-sha3-patched (~> 1.1)
-      ffi (~> 1.0)
-      money-tree (~> 0.10.0)
-      rlp (~> 0.7.3)
-      scrypt (~> 3.0.6)
     ethereum.rb (2.5)
       activesupport (>= 4.0)
       digest-sha3 (~> 1.1)
     ffi (1.15.4)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
     globalid (0.5.2)
       activesupport (>= 5.0)
     hotwire-rails (0.1.3)
@@ -134,8 +125,6 @@ GEM
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
-    money-tree (0.10.0)
-      ffi
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.4)
@@ -190,7 +179,6 @@ GEM
     redis (4.4.0)
     regexp_parser (2.1.1)
     rexml (3.2.5)
-    rlp (0.7.3)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -219,8 +207,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scrypt (3.0.7)
-      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -274,7 +260,6 @@ DEPENDENCIES
   digest-sha3!
   digest-sha3-patched!
   dotenv-rails
-  eth (~> 0.4.12)
   ethereum.rb
   hotwire-rails
   jbuilder (~> 2.7)
