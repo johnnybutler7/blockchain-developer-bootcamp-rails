@@ -1,10 +1,8 @@
-<%= turbo_frame_tag "new-ether-deposit-form" do %>
-  <%= form_tag deposits_path, class: 'row', id: 'ether-deposit-form' do |f| %>
-	  <div class="col-12 col-sm pr-sm-2">
-		  <%= text_field_tag :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "ETH Amount" %>
-	  </div>
-	  <div class="col-12 col-sm-auto pl-sm-0">
-		  <%= submit_tag 'Deposit', class: 'btn btn-primary btn-block btn-sm' %>
-	  </div>
-  <% end %>
+<%= form_tag deposits_path, class: 'row', id: 'ether-deposit-form', data:{ controller: 'ether-deposit', action: 'submit->ether-deposit#submit'}  do |f| %>
+  <div class="col-12 col-sm pr-sm-2">
+	  <%= text_field_tag :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "ETH Amount", data: { ether_deposit_target: 'etherAmount'} %>
+  </div>
+  <div class="col-12 col-sm-auto pl-sm-0">
+	  <%= submit_tag 'Deposit', class: 'btn btn-primary btn-block btn-sm' %>
+  </div>
 <% end %>
