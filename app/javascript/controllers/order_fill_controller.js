@@ -1,20 +1,17 @@
 import { Controller } from "stimulus"
 import { FetchRequest, patch } from '@rails/request.js'
 import { dappStartProcess, dappFinishProcess } from 'helpers'
+import { exchangeContract, web3, getAccount } from 'dapp'
 
 export default class extends Controller {
   connect() {}
 
 	async click(event){
-		const web3 = new Web3(Web3.givenProvider || window._blockchain_url);
-		const { abi } = require('./Exchange.json');
-		const accounts = await web3.eth.getAccounts();
-		const account = await accounts[0];
 		const orderId = this.data.get('id');
-		const smart_contract_interface = new web3.eth.Contract(abi, window._exchange_contract_address);
-		
+    const account = await getAccount();
+
 		dappStartProcess('order-book');
-    await smart_contract_interface.methods.fillOrder(orderId).send({from: account})
+    await exchangeContract.methods.fillOrder(orderId).send({from: account})
 	  .on('transactionHash', (hash) => {
  		  this.completeOrderFill(hash);
 			dappFinishProcess('order-book');

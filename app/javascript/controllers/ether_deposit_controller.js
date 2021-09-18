@@ -1,6 +1,7 @@
 import { Controller } from "stimulus"
 import { FetchRequest, patch } from '@rails/request.js'
 import { dappStartProcess, dappFinishProcess } from 'helpers'
+import { exchangeContract, web3, getAccount } from 'dapp'
 
 export default class extends Controller {
 	static targets = [ "etherAmount"]
@@ -8,16 +9,12 @@ export default class extends Controller {
 
 	async submit(event){
 		event.preventDefault();
-		
-		const depositWeiValue = Web3.utils.toWei(this.etherAmountTarget.value, 'ether');
-		const web3 = new Web3(Web3.givenProvider || window._blockchain_url);
-		const { abi } = require('./Exchange.json');
-		const accounts = await web3.eth.getAccounts();
-		const account = await accounts[0];
-		const smart_contract_interface = new web3.eth.Contract(abi, window._exchange_contract_address);
+
+		const depositWeiValue = web3.utils.toWei(this.etherAmountTarget.value, 'ether');
+		const account = await getAccount();
 
 		dappStartProcess('dapp-balance');
-    await smart_contract_interface.methods.depositEther().send({from: account, value: depositWeiValue})
+    await exchangeContract.methods.depositEther().send({from: account, value: depositWeiValue})
  	  .on('transactionHash', (hash) => {
  			this.completeEtherDeposit(hash);
  			dappFinishProcess('dapp-balance');
