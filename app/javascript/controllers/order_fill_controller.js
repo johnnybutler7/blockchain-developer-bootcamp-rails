@@ -1,5 +1,6 @@
 import { Controller } from "stimulus"
 import { FetchRequest, patch } from '@rails/request.js'
+import { dappStartProcess, dappFinishProcess } from 'helpers'
 
 export default class extends Controller {
   connect() {}
@@ -7,38 +8,32 @@ export default class extends Controller {
 	async click(event){
 		const web3 = new Web3(Web3.givenProvider || window._blockchain_url);
 		const { abi } = require('./Exchange.json');
-		var smart_contract_interface = new web3.eth.Contract(abi, window._exchange_contract_address);
-
 		const accounts = await web3.eth.getAccounts();
 		const account = await accounts[0];
 		const orderId = this.data.get('id');
+		const smart_contract_interface = new web3.eth.Contract(abi, window._exchange_contract_address);
 		
-		document.getElementById('order-book').style.display ='none';
-		document.getElementById('order-book-container').insertAdjacentHTML("beforebegin",'<div id="order-book-spinner" class="spinner-border text-light text-center"></div>')
+		dappStartProcess('order-book');
     await smart_contract_interface.methods.fillOrder(orderId).send({from: account})
 	  .on('transactionHash', (hash) => {
- 		  this.order_fill(hash);
-			this.reset_order_book();
+ 		  this.completeOrderFill(hash);
+			dappFinishProcess('order-book');
 	   })
 	   .on('error', (error) => {
 	     console.log(error);
 	     window.alert('There was an error!');
-			 this.reset_order_book();
+			 dappFinishProcess('order-book');
 	   })
 	}
 	
-	reset_order_book() {
-	 document.getElementById('order-book').style.display ='';
-	 document.getElementById('order-book-spinner').remove();
-	}
-	
-	async order_fill(transactionHash){
+	async completeOrderFill(transactionHash){
 	  const url = this.data.get('url');
-		var table = document.getElementById('all-trades-list');
-		var rows = table.rows;
-		var first_row = rows[0];
+		const table = document.getElementById('all-trades-list');
+		const rows = table.rows;
+		const first_row = rows[0];
 		const prevTokenPrice = first_row.cells[2].innerHTML;
 		const formData = new FormData();
+		
 		formData.append('prev_token_price', prevTokenPrice);
 		formData.append('transaction_hash', transactionHash);
 		

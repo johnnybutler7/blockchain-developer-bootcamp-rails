@@ -1,49 +1,51 @@
 <div class="vertical-split">
   <div class="card bg-dark text-white">
 		<div class="card-header">Balance</div>
-		<div class="card-body">
-		  <nav class="bg-dark text-white nav nav-tabs" role="tablist">
-				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#deposit-form" aria-selected="true" class="nav-item nav-link active">Deposit</a>
-				<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#withdraw-form" aria-selected="false" class="nav-item nav-link">Withdraw</a>
-			</nav>
-			<div class="tab-content">
-				<div id='deposit-form' role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
-				  <table class="table table-dark table-sm small">
-					  <thead>
-						  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
-						</thead>
-						<tbody>
-						    <%= render partial: 'dapp/balances/ether_balances', locals: { dapp_status: dapp_status } %>
-						</tbody>
-					</table>
-					<%= render partial: 'dapp/balances/new_ether_deposit_form' %>
-					<table class="table table-dark table-sm small">
-						<tbody>
-							<%= render partial: 'dapp/balances/token_balances', locals: { dapp_status: dapp_status } %>
-						</tbody>
-					</table>
-					<%= render partial: 'dapp/balances/new_token_deposit_form' %>
-				</div>
+		<div id='dapp-balance-container'>
+			<div id='dapp-balance' class="card-body">
+			  <nav class="bg-dark text-white nav nav-tabs" role="tablist">
+					<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#deposit-form" aria-selected="true" class="nav-item nav-link active">Deposit</a>
+					<a href="#" role="tab"  data-bs-toggle="tab" data-bs-target="#withdraw-form" aria-selected="false" class="nav-item nav-link">Withdraw</a>
+				</nav>
+				<div class="tab-content">
+					<div id='deposit-form' role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
+					  <table class="table table-dark table-sm small">
+						  <thead>
+							  <tr><th>Token</th><th>Wallet</th><th>Exchange</th></tr>
+							</thead>
+							<tbody>
+							    <%= render partial: 'dapp/balances/ether_balances', locals: { dapp_status: dapp_status } %>
+							</tbody>
+						</table>
+						<%= render partial: 'dapp/balances/new_ether_deposit_form' %>
+						<table class="table table-dark table-sm small">
+							<tbody>
+								<%= render partial: 'dapp/balances/token_balances', locals: { dapp_status: dapp_status } %>
+							</tbody>
+						</table>
+						<%= render partial: 'dapp/balances/new_token_deposit_form' %>
+					</div>
 		
-				<div id='withdraw-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
-					<table class="table table-dark table-sm small">
-						<thead>
-							<tr><th>Token</th>
-								<th>Wallet</th>
-								<th>Exchange</th>
-							</tr>
-						</thead>
-						<tbody>
-					    <%= render partial: 'dapp/balances/withdraw_ether_balances', locals: { dapp_status: dapp_status } %>
-						</tbody>
-					</table>
-				  <%= render partial: 'dapp/balances/new_ether_withdraw_form' %>
-					<table class="table table-dark table-sm small">
-						<tbody>
-							<%= render partial: 'dapp/balances/withdraw_token_balances', locals: { dapp_status: dapp_status } %>
-						</tbody>
-					</table>
-					<%= render partial: 'dapp/balances/new_token_withdraw_form' %>
+					<div id='withdraw-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
+						<table class="table table-dark table-sm small">
+							<thead>
+								<tr><th>Token</th>
+									<th>Wallet</th>
+									<th>Exchange</th>
+								</tr>
+							</thead>
+							<tbody>
+						    <%= render partial: 'dapp/balances/withdraw_ether_balances', locals: { dapp_status: dapp_status } %>
+							</tbody>
+						</table>
+					  <%= render partial: 'dapp/balances/new_ether_withdraw_form' %>
+						<table class="table table-dark table-sm small">
+							<tbody>
+								<%= render partial: 'dapp/balances/withdraw_token_balances', locals: { dapp_status: dapp_status } %>
+							</tbody>
+						</table>
+						<%= render partial: 'dapp/balances/new_token_withdraw_form' %>
+					</div>
 				</div>
 			</div>
 		</div>
