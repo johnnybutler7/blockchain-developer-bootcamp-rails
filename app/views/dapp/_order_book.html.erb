@@ -1,7 +1,7 @@
 <div class="vertical">
 	<div class="card bg-dark text-white">
 		<div class="card-header">Order Book</div>
-		<div class="card-body order-book">
+		<div id='order-book-container' class="card-body order-book">
 			<table class="table table-dark table-sm small dapp-table">
 				<tbody id='order-book'>
 					<% @sell_orders.each do |order| %>

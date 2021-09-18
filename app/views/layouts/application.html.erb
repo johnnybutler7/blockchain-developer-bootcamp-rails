@@ -10,6 +10,11 @@
 	 <%= stylesheet_pack_tag 'application', media: 'all' %>
 	 <%= javascript_pack_tag 'application' %>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
+	 
+	 <%= javascript_tag do %>
+	   window._exchange_contract_address = "<%= ENV['EXCHANGE_CONTRACT_ADDRESS'] %>"
+		 window._block_chain_url = "<%= ENV['BLOCKHAIN_URL'] %>"
+	 <% end %>
   </head>
 
   <body>

@@ -1,5 +1,6 @@
 PRECISION = 100000
-BLOCKCHAIN_URL = "https://ropsten.infura.io/v3/#{ENV['INFURA_API_KEY']}"
+#BLOCKCHAIN_URL = "https://ropsten.infura.io/v3/#{ENV['INFURA_API_KEY']}"
+BLOCKCHAIN_URL='http://localhost:7545'
 BlOCKCHAIN_CLIENT = Ethereum::HttpClient.new(BLOCKCHAIN_URL)
 BlOCKCHAIN_CLIENT.default_account = ENV['CURRENT_ACCOUNT']
 TRUFFLE_PATH = Dir.pwd

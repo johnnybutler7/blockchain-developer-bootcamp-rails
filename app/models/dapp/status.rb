@@ -31,7 +31,7 @@ module Dapp
 
     # will most likely want to pass this in once more is known
     def current_account
-      ENV['CURRENT_ACCOUNT']
+      ENV['CURRENT_ACCOUNT'].downcase
       #BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
       #'0x1f9334BAE0acC7a86834f60488d0C6Fa89B4590b'
     end

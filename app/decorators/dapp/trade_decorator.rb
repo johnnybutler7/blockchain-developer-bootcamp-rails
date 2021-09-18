@@ -81,7 +81,7 @@ module Dapp
     end
     
     def account
-      ENV['CURRENT_ACCOUNT']#BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
+      ENV['CURRENT_ACCOUNT'].downcase#BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
     end
     
     def amount_get

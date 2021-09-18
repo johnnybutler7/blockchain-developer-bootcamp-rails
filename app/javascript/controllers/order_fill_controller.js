@@ -2,34 +2,37 @@ import { Controller } from "stimulus"
 import { FetchRequest, patch } from '@rails/request.js'
 
 export default class extends Controller {
-  connect() {
-  	const web3 = new Web3(Web3.givenProvider || "#<%= ENV['BLOCKCHAIN_URL'] %>");
-  }
-	
+  connect() {}
+
 	async click(event){
-		
-		const web3 = new Web3(Web3.givenProvider || "#<%= ENV['BLOCKCHAIN_URL'] %>");
+		const web3 = new Web3(Web3.givenProvider || window._blockchain_url);
 		const { abi } = require('./Exchange.json');
-		var smart_contract_interface = new web3.eth.Contract(abi, '0xC44E2e0b9A384971a4B7862Dc89a64Cfb780efEc');
-		var transactionHash = '';
+		var smart_contract_interface = new web3.eth.Contract(abi, window._exchange_contract_address);
 
 		const accounts = await web3.eth.getAccounts();
 		const account = await accounts[0];
-		console.log(account);
 		const orderId = this.data.get('id');
 		
+		document.getElementById('order-book').style.display ='none';
+		document.getElementById('order-book-container').insertAdjacentHTML("beforebegin",'<div id="order-book-spinner" class="spinner-border text-light text-center"></div>')
     await smart_contract_interface.methods.fillOrder(orderId).send({from: account})
 	  .on('transactionHash', (hash) => {
- 		  transactionHash = hash;
+ 		  this.order_fill(hash);
+			this.reset_order_book();
 	   })
 	   .on('error', (error) => {
 	     console.log(error);
 	     window.alert('There was an error!');
+			 this.reset_order_book();
 	   })
-		
-		console.log(transactionHash);
-		
-		
+	}
+	
+	reset_order_book() {
+	 document.getElementById('order-book').style.display ='';
+	 document.getElementById('order-book-spinner').remove();
+	}
+	
+	async order_fill(transactionHash){
 	  const url = this.data.get('url');
 		var table = document.getElementById('all-trades-list');
 		var rows = table.rows;
