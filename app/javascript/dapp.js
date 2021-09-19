@@ -5,6 +5,8 @@ export const exchangeContract = new web3.eth.Contract(exchangeAbi.abi, '0x4A8139
 const tokenAbi = require('./Token.json');
 export const tokenContract = new web3.eth.Contract(tokenAbi.abi, '0x6b6C056f9D63A68D9Eaafb2AD65Ee3896615B53D');
 
+export const etherAddress = '0000000000000000000000000000000000000000';
+
 export async function getAccount() {
   const response = await web3.eth.getAccounts();
 	const first_account = await response[0];

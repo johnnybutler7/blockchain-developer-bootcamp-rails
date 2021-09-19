@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   def create    
-    buy_order = Dapp::BuyOrder.new(params: params)
+    buy_order = Dapp::BuyOrder.new(transaction_hash: params[:transaction_hash])
     result = Blockchain::Runner.new(transaction: buy_order).run
     
     respond_to do |format|
-      if result.success?
+     if result.success?
         format.turbo_stream {
           @order = result.response
         }

@@ -1,12 +1,11 @@
 module Dapp
   class BuyOrder
-    def initialize(params:)
-      @params = params
+    def initialize(transaction_hash:)
+      @transaction_hash = transaction_hash
     end
 
     def run
-      transaction = EXCHANGE.transact_and_wait.make_order(token_get, amount_get, token_give, amount_give)
-      order = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').find_by_transaction_id(transaction.id)
+      order = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Order').find_by_transaction_id(transaction_hash)
       Dapp::OrderDecorator.new(item: order).decorate
     end
     
@@ -16,22 +15,6 @@ module Dapp
 
     private
   
-    attr_reader :params
-    
-    def token_get
-      TOKEN.address
-    end
-    
-    def amount_get
-      Ethereum::Formatter.new.to_wei(params[:buy_amount].to_i)
-    end
-    
-    def token_give
-      ENV['ETHER_ADDRESS']
-    end
-    
-    def amount_give
-      Ethereum::Formatter.new.to_wei(params[:buy_amount].to_i * params[:buy_price].to_f)
-    end
+    attr_reader :transaction_hash
   end
 end

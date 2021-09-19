@@ -53,14 +53,15 @@
 	
 	<div class="card bg-dark text-white">
 		<div class="card-header">New Order</div>
-		<div class="card-body">
+		<div id='new-order-container' class="card-body">
+			<div id='new-order'>
 			<nav class="bg-dark text-white nav nav-tabs" role="tablist">
 				<a href="#" role="tab" data-bs-toggle="tab" aria-selected="true" data-bs-target="#buy-order-form" class="nav-item nav-link active">Buy</a>
 				<a id='sell-order-tab' href="#" role="tab" data-bs-toggle="tab" aria-selected="false" data-bs-target="#sell-order-form" class="nav-item nav-link">Sell</a>
 	
 			</nav>
 			<div class="tab-content">
-				<div role="tabpanel" id='buy-order-form' aria-hidden="false" class="fade bg-dark tab-pane active show">
+				<div role="tabpanel" aria-hidden="false" class="fade bg-dark tab-pane active show">
 					<%= render partial: 'dapp/balances/new_buy_order_form' %>
 				</div>
 				<div id='sell-order-form' role="tabpanel" aria-hidden="true" class="fade bg-dark tab-pane">
@@ -68,5 +69,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>

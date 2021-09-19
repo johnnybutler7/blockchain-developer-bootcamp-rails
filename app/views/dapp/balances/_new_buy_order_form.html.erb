@@ -1,17 +1,15 @@
-<%= turbo_frame_tag "new-buy-order-form" do %>
-  <%= form_tag orders_path id: 'buy-order-form' do |f| %>
-	  <div class="form-group small w-100">
-		  <label>Buy Amount (DAPP)</label>
-		  <div class="input-group">
-			  <%= text_field_tag :buy_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Buy Amount" %>
-		  </div>
+<%= form_tag orders_path, id: 'buy-order-form', data:{ controller: 'buy-order', action: 'submit->buy-order#submit'} do |f| %>
+  <div class="form-group small w-100">
+	  <label>Buy Amount (DAPP)</label>
+	  <div class="input-group">
+		  <%= text_field_tag :buy_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Buy Amount", data: { buy_order_target: 'buyAmount'}  %>
 	  </div>
-	  <div class="form-group small w-100 pb-3">
-		  <label>Buy Price</label>
-		  <div class="input-group">
-			  <%= text_field_tag :buy_price, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Buy Price"  %>
-		  </div>
+  </div>
+  <div class="form-group small w-100 pb-3">
+	  <label>Buy Price</label>
+	  <div class="input-group">
+		  <%= text_field_tag :buy_price, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "Buy Price", data: { buy_order_target: 'buyPrice'} %>
 	  </div>
-	  <%= submit_tag 'Buy Order', class: "btn btn-primary btn-sm btn-block w-100" %>
-  <% end %>
+  </div>
+  <%= submit_tag 'Buy Order', class: "btn btn-primary btn-sm btn-block w-100" %>
 <% end %>
