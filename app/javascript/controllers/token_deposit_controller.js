@@ -12,37 +12,21 @@ export default class extends Controller {
 
 		const depositWeiValue = web3.utils.toWei(this.tokenAmountTarget.value, 'ether');
 		const account = await getAccount();
-		
-		console.log(exchangeContract.options.address);
-		console.log(tokenContract.options.address);
-		console.log(depositWeiValue);
 
 		dappStartProcess('dapp-balance');
 		await tokenContract.methods.approve(exchangeContract.options.address, depositWeiValue).send({ from: account })
-		  .on('transactionHash', (hash) => {
-		    exchangeContract.methods.depositToken(tokenContract.options.address, depositWeiValue).send({ from: account })
-		    .on('transactionHash', (hash) => {
-		 			this.completeTokenDeposit(hash);
-		 			dappFinishProcess('dapp-balance');
-		    })
-		    .on('error',(error) => {
-	  	    console.log(error);
-	  	    window.alert('There was an error!');
-	  			dappFinishProcess('dapp-balance');
-		    })
-		  })
-		
-		
-    // await exchangeContract.methods.depositEther().send({from: account, value: depositWeiValue})
- // 	  .on('transactionHash', (hash) => {
- // 			this.completeEtherDeposit(hash);
- // 			dappFinishProcess('dapp-balance');
- // 	   })
- // 	   .on('error', (error) => {
- // 	     console.log(error);
- // 	     window.alert('There was an error!');
- // 			 dappFinishProcess('dapp-balance');
- // 	   })
+	  .on('transactionHash', (hash) => {
+	    exchangeContract.methods.depositToken(tokenContract.options.address, depositWeiValue).send({ from: account })
+	    .on('transactionHash', (hash) => {
+	 			this.completeTokenDeposit(hash);
+	 			dappFinishProcess('dapp-balance');
+	    })
+	    .on('error',(error) => {
+  	    console.log(error);
+  	    window.alert('There was an error!');
+  			dappFinishProcess('dapp-balance');
+	    })
+	  })
 	}
 	
 	async completeTokenDeposit(transactionHash){

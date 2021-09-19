@@ -1,10 +1,8 @@
-<%= turbo_frame_tag "new-ether-withdraw-form" do %>
-	<%= form_tag withdrawals_path, class: 'row', id: 'ether-withdraw-form' do |f| %>
-		<div class="col-12 col-sm pr-sm-2">
-			<%= text_field_tag  :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "ETH Amount"%>
-		</div>
-		<div class="col-12 col-sm-auto pl-sm-0">
-			<%= submit_tag 'Withdraw', class:  "btn btn-primary btn-block btn-sm"%>
-		</div>
-	<% end %>
+<%= form_tag withdrawals_path, class: 'row', id: 'ether-withdraw-form', data:{ controller: 'ether-withdraw', action: 'submit->ether-withdraw#submit'} do |f| %>
+	<div class="col-12 col-sm pr-sm-2">
+		<%= text_field_tag  :ether_amount, nil, class: "form-control form-control-sm bg-dark text-white", placeholder: "ETH Amount", data: { ether_withdraw_target: 'etherAmount'}%>
+	</div>
+	<div class="col-12 col-sm-auto pl-sm-0">
+		<%= submit_tag 'Withdraw', class:  "btn btn-primary btn-block btn-sm"%>
+	</div>
 <% end %>

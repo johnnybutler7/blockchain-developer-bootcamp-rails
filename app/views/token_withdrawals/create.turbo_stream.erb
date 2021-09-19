@@ -10,7 +10,7 @@
                             dapp_status: @dapp_status
 													}) %>
 																						
-<%= turbo_stream.replace('new-token-withdraw-form',
+<%= turbo_stream.replace('token-withdraw-form',
                           partial: "dapp/balances/new_token_withdraw_form") %>
 													
 <%= turbo_stream.append "toasts", partial: "shared/toast", locals: { message: "Successfully withdrew Tokens" } %>
