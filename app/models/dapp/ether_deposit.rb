@@ -7,9 +7,9 @@ module Dapp
   
     def run
       return true
-      #transaction = build_transaction
-      #transaction.sign(key)
-      #BlOCKCHAIN_CLIENT.eth_send_raw_transaction(transaction.hex)
+      transaction = build_transaction
+      transaction.sign(key)
+      BlOCKCHAIN_CLIENT.eth_send_raw_transaction(transaction.hex)
     end
     
     def description
