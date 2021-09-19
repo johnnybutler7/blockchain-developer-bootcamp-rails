@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<nav class="bg-dark text-white nav nav-tabs" role="tablist">
 				<a href="#" role="tab" data-bs-toggle="tab"  data-bs-target="#my-trades" aria-selected="true" class="nav-item nav-link active">Trades</a>
-				<a href="#" role="tab" data-bs-toggle="tab" data-bs-target="#my-orders" aria-selected="false" class="nav-item nav-link">Orders</a>
+				<a href="#" role="tab" data-bs-toggle="tab" data-bs-target="#my-orders-container" aria-selected="false" class="nav-item nav-link">Orders</a>
 
 			</nav>
 			<div class="tab-content">
@@ -23,7 +23,8 @@
 						</tbody>
 					</table>
 				</div>
-				<div id='my-orders' role="tabpanel" aria-hidden="true" class="fade tab-pane">
+				<div id='my-orders-container' role="tabpanel" aria-hidden="true" class="fade tab-pane">
+					<div id='my-orders'>
 					<table class="table table-dark table-sm small dapp-table">
 						<thead>
 							<tr>
@@ -38,6 +39,7 @@
 							<% end %>
 						</tbody>
 					</table>
+				</div>
 				</div>
 			</div>
 		</div>

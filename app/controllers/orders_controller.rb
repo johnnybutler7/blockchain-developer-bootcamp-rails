@@ -40,18 +40,10 @@ class OrdersController < ApplicationController
   
   def destroy
     @order_id = order_id
-    order_cancel = Dapp::OrderCancel.new(order_id: @order_id)
-    result = Blockchain::Runner.new(transaction: order_cancel).run
 
     respond_to do |format|
-      if result.success?
-        format.turbo_stream {}
-        format.html { redirect_to dapp_path, notice: 'Order successfully cancelled' }  
-      else
-        @error_message = result.error_message
-        format.html { redirect_to dapp_path, notice: @error_message }
-        format.turbo_stream { render 'shared/turbo_error' }
-      end
+      format.turbo_stream {}
+      format.html { redirect_to dapp_path, notice: 'Order successfully cancelled' }  
     end
   end
   

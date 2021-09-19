@@ -1,5 +1,5 @@
-<tr id="my-order-<%= order.order_id %>">
+<tr id="my-order-<%= order.order_id %>" >
 	<td class="<%= buy_or_sell_color(order.order_type) %>"><%= order.token_amount %></td>
 	<td class="<%= buy_or_sell_color(order.order_type) %>"><%= order.token_price %></td>
-	<td class="text-muted cancel-order" data-toggle="tooltip" data-placement="right" title="Click here to cancel"><%= button_to 'X', order_path(id: order.order_id), method: :delete, data: {order_id: order.order_id}, title: "Click here to cancel", class: 'btn-link text-danger cancel-order-link' %></td>
+	<td class="text-muted cancel-order text-danger" data-toggle="tooltip" data-placement="right" title="Click here to cancel" data-action="click->order-cancel#click" data-controller="order-cancel" data-order-cancel-id="<%= order.order_id %>" data-order-cancel-url="<%= order_url(id: order.order_id) %>">X</td>
 </tr>
