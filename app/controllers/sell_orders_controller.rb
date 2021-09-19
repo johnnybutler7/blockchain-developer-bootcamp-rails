@@ -1,6 +1,6 @@
 class SellOrdersController < ApplicationController
   def create    
-    sell_order = Dapp::SellOrder.new(params: params)
+    sell_order = Dapp::SellOrder.new(transaction_hash: params[:transaction_hash])
     result = Blockchain::Runner.new(transaction: sell_order).run
     
     respond_to do |format|

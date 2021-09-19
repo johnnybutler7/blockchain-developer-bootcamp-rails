@@ -4,24 +4,24 @@ import { dappStartProcess, dappFinishProcess } from 'helpers'
 import { exchangeContract, tokenContract, web3, getAccount, etherAddress } from 'dapp'
 
 export default class extends Controller {
-	static targets = [ "buyAmount", "buyPrice"]
+	static targets = [ "sellAmount", "sellPrice"]
   connect() {}
 
 	async submit(event){
 		event.preventDefault();
-
+		
 		const account = await getAccount();
-    const tokenGet = tokenContract.options.address;
-		const buyAmount = this.buyAmountTarget.value;
-		const buyPrice = this.buyPriceTarget.value;
-    const amountGet = web3.utils.toWei(buyAmount);
-    const tokenGive = etherAddress;
-    const amountGive = web3.utils.toWei((parseInt(buyAmount) * parseFloat(buyPrice)).toString())
+    const tokenGet = etherAddress;
+		const sellAmount = this.sellAmountTarget.value;
+		const sellPrice = this.sellPriceTarget.value;
+    const amountGet = web3.utils.toWei((parseInt(sellAmount) * parseFloat(sellPrice)).toString(), 'ether');
+    const tokenGive = tokenContract.options.address;
+    const amountGive = web3.utils.toWei(sellAmount, 'ether');
 
 		dappStartProcess('new-order');
     await exchangeContract.methods.makeOrder(tokenGet, amountGet, tokenGive, amountGive).send({ from: account })
     .on('transactionHash', (hash) => {
- 			this.completeBuyOrder(hash);
+ 			this.completeSellOrder(hash);
  			dappFinishProcess('new-order');
     })
     .on('error',(error) => {
@@ -31,8 +31,8 @@ export default class extends Controller {
     })
 	}
 	
-	async completeBuyOrder(transactionHash){
-	  const url = document.getElementById("buy-order-form").action
+	async completeSellOrder(transactionHash){
+	  const url = document.getElementById("sell-order-form").action
 		const formData = new FormData();
 
 		formData.append('transaction_hash', transactionHash);
