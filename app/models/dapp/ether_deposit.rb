@@ -41,7 +41,7 @@ module Dapp
     end
   
     def account
-      ENV['CURRENT_ACCOUNT']#BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
+      BlOCKCHAIN_CLIENT.default_account
     end
   
     def function

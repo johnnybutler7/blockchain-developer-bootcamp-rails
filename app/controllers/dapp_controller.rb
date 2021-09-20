@@ -1,6 +1,6 @@
 class DappController < ApplicationController
   def show
-    @dapp_status = Dapp::Status.new
+    @dapp_status = Dapp::Status.new()
 
     exchange_trade_log = Blockchain::Logs.new(contract: EXCHANGE, event_name: 'Trade').call
     @trades = Dapp::TradesDecorator.new(items: exchange_trade_log).call
@@ -11,9 +11,8 @@ class DappController < ApplicationController
     
     @sell_orders = open_orders.find_all{|o| o.order_type == 'sell'}
     @buy_orders = open_orders.find_all{|o| o.order_type == 'buy'}
-
-    @my_orders = open_orders.find_all{|o| o.user == @dapp_status.account}
-    @my_trades = @trades.find_all{|o| o.user == @dapp_status.account || o.user_fill == @dapp_status.account}
+    @my_orders = open_orders.find_all{|o| Ethereum::Formatter.new.to_ascii(o.user) == Ethereum::Formatter.new.to_ascii(@dapp_status.account)}
+    @my_trades = @trades.find_all{|o| Ethereum::Formatter.new.to_ascii(o.user) == Ethereum::Formatter.new.to_ascii(@dapp_status.account) || Ethereum::Formatter.new.to_ascii(o.user_fill) == Ethereum::Formatter.new.to_ascii(@dapp_status.account)}
     
     @graph = Dapp::Graph.new(orders: @trades.sort_by(&:formatted_timestamp))
   end

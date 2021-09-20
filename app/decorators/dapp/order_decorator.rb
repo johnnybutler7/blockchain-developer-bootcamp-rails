@@ -52,7 +52,7 @@ module Dapp
     end
 
     def order_type
-      token_give == ENV['ETHER_ADDRESS'].downcase ? 'buy' : 'sell'
+      token_give == ENV['ETHER_ADDRESS'] ? 'buy' : 'sell'
     end
     
     def amount_get

@@ -81,7 +81,7 @@ module Dapp
     end
     
     def account
-      ENV['CURRENT_ACCOUNT'].downcase#BlOCKCHAIN_CLIENT.eth_accounts['result'][0]
+      BlOCKCHAIN_CLIENT.default_account
     end
     
     def amount_get
@@ -93,7 +93,7 @@ module Dapp
     end
     
     def user_is_account?
-      user == account
+      Ethereum::Formatter.new.to_ascii(user) == Ethereum::Formatter.new.to_ascii(account)
     end
   end
 end

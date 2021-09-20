@@ -12,7 +12,6 @@
 	 <%= stylesheet_pack_tag 'application', media: 'all' %>
 	 <%= javascript_pack_tag 'application' %>
 	 
-	 
 	 <%= javascript_tag do %>
 	   window._exchange_contract_address = "<%= ENV['EXCHANGE_CONTRACT_ADDRESS'] %>"
 		 window._block_chain_url = "<%= ENV['BLOCKHAIN_URL'] %>"
@@ -22,6 +21,8 @@
   <body>
 	  <div id='root'>
 		  <div>
+				<div data-controller="load" data-load-success-url='<%= account_path %>' data-load-error-url='<%= account_path %>'></div>
+				
 		    <%= render partial: 'shared/notices' %>
 				<%= render partial: 'shared/header' %>
 				<%= render partial: 'shared/toasts' %>
