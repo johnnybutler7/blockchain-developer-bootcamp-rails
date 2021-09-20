@@ -11,8 +11,8 @@ class DappController < ApplicationController
     
     @sell_orders = open_orders.find_all{|o| o.order_type == 'sell'}
     @buy_orders = open_orders.find_all{|o| o.order_type == 'buy'}
-    @my_orders = open_orders.find_all{|o| Ethereum::Formatter.new.to_ascii(o.user) == Ethereum::Formatter.new.to_ascii(@dapp_status.account)}
-    @my_trades = @trades.find_all{|o| Ethereum::Formatter.new.to_ascii(o.user) == Ethereum::Formatter.new.to_ascii(@dapp_status.account) || Ethereum::Formatter.new.to_ascii(o.user_fill) == Ethereum::Formatter.new.to_ascii(@dapp_status.account)}
+    @my_orders = open_orders.find_all{|o| o.user.hex == @dapp_status.account.hex}
+    @my_trades = @trades.find_all{|o| o.user.hex == @dapp_status.account.hex || o.user_fill.hex == @dapp_status.account.hex}
     
     @graph = Dapp::Graph.new(orders: @trades.sort_by(&:formatted_timestamp))
   end

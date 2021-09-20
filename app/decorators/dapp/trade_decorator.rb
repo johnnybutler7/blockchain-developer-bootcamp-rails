@@ -93,7 +93,7 @@ module Dapp
     end
     
     def user_is_account?
-      Ethereum::Formatter.new.to_ascii(user) == Ethereum::Formatter.new.to_ascii(account)
+      user.hex == account.hex
     end
   end
 end
