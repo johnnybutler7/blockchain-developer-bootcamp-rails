@@ -1,7 +1,7 @@
 PRECISION = 100000
 #BLOCKCHAIN_URL = "https://ropsten.infura.io/v3/#{ENV['INFURA_API_KEY']}"
-BLOCKCHAIN_URL='http://localhost:7545'
-BlOCKCHAIN_CLIENT = Ethereum::HttpClient.new(BLOCKCHAIN_URL)
+#BLOCKCHAIN_URL='http://localhost:7545'
+BlOCKCHAIN_CLIENT = Ethereum::HttpClient.new(ENV['BLOCKHAIN_URL'])
 #BlOCKCHAIN_CLIENT.default_account = '0x7A16c99681B12Bc70dFBAf22d64a6040AEBE3ca1'
 TRUFFLE_PATH = Dir.pwd
 EXCHANGE = Ethereum::Contract.create(name: "Exchange", truffle: { paths: [ TRUFFLE_PATH ] }, client: BlOCKCHAIN_CLIENT)

@@ -1,9 +1,16 @@
+if(typeof window.ethereum =='undefined'){
+	window.alert('Please install MetaMask')
+  window.location.assign("https://metamask.io/")
+}
+
 export const web3 = new Web3(Web3.givenProvider || window._blockchain_url);
 const exchangeAbi = require('./Exchange.json');
-export const exchangeContract = new web3.eth.Contract(exchangeAbi.abi, '0xdb124f4D549C60849E385c0545a6158f9b6535AA');
+export const exchangeContract = new web3.eth.Contract(exchangeAbi.abi, '0x6fBB2975DFf916ec1968466d3a06F9187D7030F8');
+
+console.log(exchangeAbi.abi);
 
 const tokenAbi = require('./Token.json');
-export const tokenContract = new web3.eth.Contract(tokenAbi.abi, '0xce7E7944196cAb4565f6fEA0001d1272b7092615');
+export const tokenContract = new web3.eth.Contract(tokenAbi.abi, '0x1395740E01af667b9E2743c9af57749c87Ee9214');
 
 export const etherAddress = '0000000000000000000000000000000000000000';
 

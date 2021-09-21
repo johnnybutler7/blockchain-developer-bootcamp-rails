@@ -5,21 +5,22 @@ import { web3, exchangeContract, tokenContract,  getAccount} from 'dapp'
 export default class extends Controller {
   async connect() {
 		const account = await getAccount();
-		console.log(account);
 		this.setAccount(account);
   }
 
 	async setAccount(account){
 		const url = this.data.get('success-url');
-		console.log(url);
     const request = new FetchRequest("GET", url, {responseKind: "JSON"})
 		
 		const response = await request.perform().then(response => response.json)
     .then(data => {
-			if (data['account'] == account){
-			  console.log('Account is the same, nothing to do here!');
-			} else {
+			if (account === undefined){
+				alert('Please login with Metamask');
+			}
+			else if (data['account'] != account){
 				this.reloadPage(url, account);
+			} else {
+				// 'Account is the same, nothing to do here!'
 			}
     });
 	}
